@@ -5,7 +5,7 @@ library(klaR)
 library(caret)
 
 # set current work path
-setwd('.')
+setwd('./')
 
 # read in csv file
 input_data <- read.csv('pima-indians-diabetes.csv', header=FALSE)
@@ -58,8 +58,10 @@ for (iter in 1:iters)
   train_x_negative_square <- apply(train_x_negative_scale, c(1, 2), function(x)x^2)
   train_x_negative_log_prob <- -(1/2)*rowSums(train_x_negative_square, na.rm=TRUE) - sum(log(train_x_negative_sd))
   
-  # record percentage guessed correctly in scores array
+  # predict labels
   train_predict_y <- train_x_positive_log_prob > train_x_negative_log_prob
+  
+  # calculate train accuracy
   train_correct_account <- train_predict_y == train_y
   train_accuracy[iter] <- sum(train_correct_account)/(sum(train_correct_account)+sum(!train_correct_account))
   
@@ -79,8 +81,10 @@ for (iter in 1:iters)
   test_x_negative_square <- apply(test_x_negative_scale, c(1, 2), function(x)x^2)
   test_x_negative_log_prob <- -(1/2)*rowSums(test_x_negative_square, na.rm=TRUE) - sum(log(train_x_negative_sd))
   
-  # record percentage guessed correctly in scores array
+  # predict labels
   test_predict_y <- test_x_positive_log_prob > test_x_negative_log_prob
+  
+  # calculate test accuracy
   test_correct_account <- test_predict_y == test_y
   test_accuracy[iter] <- sum(test_correct_account)/(sum(test_correct_account)+sum(!test_correct_account))
 }
