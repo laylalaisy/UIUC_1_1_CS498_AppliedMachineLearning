@@ -14,7 +14,7 @@ if __name__ == "__main__":
         input_file.close()
 
     input_data = np.array(input_data_list)
-    input_x = input_data[2:][:]
-    input_y = input_data[1][1:]
 
-    print(input_data[1][1])
+    input_y = input_data[1:, 1:2]
+
+    print(input_y)
