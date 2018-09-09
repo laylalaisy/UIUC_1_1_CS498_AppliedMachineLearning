@@ -40,7 +40,6 @@ def stretchedBoundingBox(input_x_reshape):
             for col in range(row_left, row_right):
                 col_new.append(input_x_reshape[iter][row][col])
             row_new.append(col_new)
-        row_new = np.array(row_new)
         row_new = np.array(row_new).astype(np.float)
         input_x_stretched.append(np.resize(row_new, (20, 20)).ravel())
 
@@ -73,7 +72,19 @@ def writeCsvFile(filename, test_output_y):
             content.append([iter, int(test_output_y[iter])])
         test_output_writer.writerows(content)
 
+def meanImage(test_input_x, test_output_y):
+    # STORE CLASSIFIED TRAINING DATA
+    test_input_x_classified = []
+    test_sample_amount = test_output_y.shape[0]
+    for iter in range(class_amount):
+        test_input_x_classified.append([])
 
+    test_sample_amount = test_output_y.shape[0]
+    for iter in range(test_sample_amount):
+       test_input_x_classified[int(test_output_y[iter])].append(test_input_x[iter])
+    test_input_x_classified = np.array(test_input_x_classified).astype(float)
+
+    return test_input_x_classified
 
 if __name__ == "__main__":
 
@@ -95,17 +106,6 @@ if __name__ == "__main__":
     train_input_x = np.array(train_input_x).astype(np.float)
     train_input_y = train_input_data[1:, 1:2]
     train_input_y = np.array(train_input_y).astype(np.float)
-
-    # # STORE CLASSIFIED TRAINING DATA
-    # train_input_x_classified_list = []
-    # for iter in range(class_amount):
-    #     train_input_x_classified_list.append([])
-    #
-    # train_input_sample_amount = train_input_y.shape[0]
-    #
-    # for iter in range(train_input_sample_amount):
-    #     train_input_x_classified_list[int(train_input_y[iter])].append(train_input_x[iter])
-    # train_input_x_classified = np.array(train_input_x_classified_list)
 
     # READ IN TESTING DATA
     with open("./test.csv", "r") as test_input_file:
@@ -129,8 +129,12 @@ if __name__ == "__main__":
     test_input_x_stretched = stretchedBoundingBox(test_input_x_reshape)
 
     # 1. GAUSSIAN + UNTOUCHED
-    # test_output_y = gaussianNaiveBayes(train_input_x, train_input_y, test_input_x)
-    # writeCsvFile("shuyuel2_1.csv", test_output_y)
+    test_output_y = gaussianNaiveBayes(train_input_x, train_input_y, test_input_x)
+    writeCsvFile("shuyuel2_1.csv", test_output_y)
+
+    test_output_y = np.array(test_output_y).astype(float)
+    meanImage(test_input_x, test_output_y)
+
 
     # 2. GAUSSIAN + STRETCHED
     # test_output_y = gaussianNaiveBayes(train_input_x_stretched, train_input_y, test_input_x_stretched)
@@ -141,8 +145,8 @@ if __name__ == "__main__":
     # writeCsvFile("shuyuel2_3.csv", test_output_y)
 
     # 4. BERNOULLI + STRETCHED
-    test_output_y = bernoulliNaiveBayes(train_input_x_stretched, train_input_y, test_input_x_stretched)
-    writeCsvFile("shuyuel2_4.csv", test_output_y)
+    # test_output_y = bernoulliNaiveBayes(train_input_x_stretched, train_input_y, test_input_x_stretched)
+    # writeCsvFile("shuyuel2_4.csv", test_output_y)
 
 
 
