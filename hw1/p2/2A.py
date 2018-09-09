@@ -42,21 +42,11 @@ def stretchedBoundingBox(input_x_reshape):
             row_new.append(col_new)
         row_new = np.array(row_new)
         row_new = np.array(row_new).astype(np.float)
-        input_x_stretched.append(np.resize(row_new, (20, 20)))
+        input_x_stretched.append(np.resize(row_new, (20, 20)).ravel())
 
     return input_x_stretched
 
 def gaussianNaiveBayes(train_input_x, train_input_y, test_input_x):
-    # # initialize
-    # initial_value = 0
-    # list_length = 10
-    # train_mean = [initial_value] * list_length
-    # train_sd = [initial_value] * list_length
-    #
-    # for iter in range(class_amount):
-    #     # train_mean[iter] = np.mean(train_input_x_classified[iter])
-    #     print(train_input_x_classified[iter][0][0])
-    #     break
     classifier = GaussianNB()
     classifier.fit(train_input_x, train_input_y.ravel())
 
@@ -130,14 +120,6 @@ if __name__ == "__main__":
     test_input_x = np.array(test_input_data_list)
     test_input_x = np.array(test_input_x).astype(np.float)
 
-    # 1. GAUSSIAN + UNTOUCHED
-    # test_output_y = gaussianNaiveBayes(train_input_x, train_input_y, test_input_x)
-    # writeCsvFile("shuyuel2_1.csv", test_output_y)
-
-    # 3. BERNOULLI + UNTOUCHED
-    # test_output_y = bernoulliNaiveBayes(train_input_x, train_input_y, test_input_x)
-    # writeCsvFile("shuyuel2_3.csv", test_output_y)
-
     # RESHAPE FEATURE VECTORS
     train_input_x_reshape = featureShape(train_input_x)
     test_input_x_reshape = featureShape(test_input_x)
@@ -145,6 +127,26 @@ if __name__ == "__main__":
     # STRETCHED BOUNDING BOX
     train_input_x_stretched = stretchedBoundingBox(train_input_x_reshape)
     test_input_x_stretched = stretchedBoundingBox(test_input_x_reshape)
+
+    # 1. GAUSSIAN + UNTOUCHED
+    # test_output_y = gaussianNaiveBayes(train_input_x, train_input_y, test_input_x)
+    # writeCsvFile("shuyuel2_1.csv", test_output_y)
+
+    # 2. GAUSSIAN + STRETCHED
+    # test_output_y = gaussianNaiveBayes(train_input_x_stretched, train_input_y, test_input_x_stretched)
+    # writeCsvFile("shuyuel2_2.csv", test_output_y)
+
+    # 3. BERNOULLI + UNTOUCHED
+    # test_output_y = bernoulliNaiveBayes(train_input_x, train_input_y, test_input_x)
+    # writeCsvFile("shuyuel2_3.csv", test_output_y)
+
+    # 4. BERNOULLI + STRETCHED
+    test_output_y = bernoulliNaiveBayes(train_input_x_stretched, train_input_y, test_input_x_stretched)
+    writeCsvFile("shuyuel2_4.csv", test_output_y)
+
+
+
+
 
 
 
