@@ -11,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/p2$2A.coverage" NAME="2A Coverage Results" MODIFIED="1536451483115" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/p2$2A.coverage" NAME="2A Coverage Results" MODIFIED="1536458660812" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -37,22 +37,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="2" />
+          <entry key="py" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="2" />
+          <entry key="Python" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="1868" />
+          <entry key="py" value="3104" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="1868" />
+          <entry key="Python" value="3104" />
         </counts>
       </usages-collector>
     </session>
@@ -65,11 +65,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2A.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="476">
-              <caret line="35" column="17" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
+            <state relative-caret-position="-97">
+              <caret line="30" column="26" lean-forward="true" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1536452262742" expanded="true" signature="29:33" ph="..." />
+                <marker date="1536458840271" expanded="true" signature="100:103" ph="..." />
               </folding>
             </state>
           </provider>
@@ -133,7 +133,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="settings.editor.selected.configurable" value="preferences.intentionPowerPack" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -221,22 +221,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="65" y="-4" width="1572" height="1287" extended-state="6" />
+    <frame x="65" y="-4" width="1451" height="1297" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.50058895" side_tool="true" weight="0.091874234" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.4993565" visible="true" weight="0.1474443" />
-      <window_info id="Structure" order="2" sideWeight="0.5006435" side_tool="true" visible="true" weight="0.1474443" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.499391" visible="true" weight="0.054092526" />
+      <window_info id="Structure" order="2" sideWeight="0.50060904" side_tool="true" weight="0.1474443" />
       <window_info anchor="bottom" id="Database Changes" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32938188" />
-      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.5006553" side_tool="true" visible="true" weight="0.32959446" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.50262123" side_tool="true" weight="0.29163072" />
       <window_info anchor="bottom" id="Version Control" order="3" weight="0.32938188" />
       <window_info anchor="bottom" id="Python Console" order="4" weight="0.32260796" />
       <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="6" />
-      <window_info active="true" anchor="bottom" id="Find" order="7" sideWeight="0.4993447" visible="true" weight="0.32959446" />
-      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.4980341" weight="0.29163072" />
-      <window_info anchor="bottom" id="Debug" order="9" sideWeight="0.4977542" weight="0.3911939" />
+      <window_info anchor="bottom" id="Find" order="7" sideWeight="0.4993447" weight="0.32959446" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.49737877" visible="true" weight="0.2942686" />
+      <window_info anchor="bottom" id="Debug" order="9" sideWeight="0.4977542" weight="0.38357323" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="12" sideWeight="0.4993875" weight="0.32938188" />
@@ -254,17 +254,6 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/2A.py</url>
-          <line>22</line>
-          <option name="timeStamp" value="6" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -275,11 +264,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/2A.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="476">
-          <caret line="35" column="17" selection-start-line="35" selection-start-column="17" selection-end-line="35" selection-end-column="17" />
+        <state relative-caret-position="-97">
+          <caret line="30" column="26" lean-forward="true" selection-start-line="30" selection-start-column="26" selection-end-line="30" selection-end-column="26" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1536452262742" expanded="true" signature="29:33" ph="..." />
+            <marker date="1536458840271" expanded="true" signature="100:103" ph="..." />
           </folding>
         </state>
       </provider>
