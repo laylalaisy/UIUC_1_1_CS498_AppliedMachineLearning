@@ -75,7 +75,14 @@ if __name__ == "__main__":
     with open("shuyuel2_1.csv", "w") as test_output_file_1:
         test_output_writer_1 = csv.writer(test_output_file_1)
 
-        test_output_writer_1.writerows(map(lambda x: [x], test_output_y))
+        fileHeader = ["ImageId", "Label"]
+        test_output_writer_1.writerow(fileHeader)
+
+        test_sample_amount = test_output_y.shape[0]
+        content = []
+        for iter in range(test_sample_amount):
+            content.append([iter, int(test_output_y[iter])])
+        test_output_writer_1.writerows(content)
 
 
 
