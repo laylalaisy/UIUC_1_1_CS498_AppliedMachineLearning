@@ -1,9 +1,10 @@
 import csv
 import numpy as np
+from sklearn.naive_bayes import GaussianNB
 
 class_amount = 10
 
-def gaussianNaiveBayes(train_input_x_classified, test_input_x):
+def gaussianNaiveBayes(train_input_x, train_input_y, test_input_x)
     # initialize
     initial_value = 0
     list_length = 10
@@ -11,7 +12,7 @@ def gaussianNaiveBayes(train_input_x_classified, test_input_x):
     train_sd = [initial_value] * list_length
 
     for iter in range(class_amount):
-        #train_mean[iter] = np.mean(train_input_x_classified[iter])
+        # train_mean[iter] = np.mean(train_input_x_classified[iter])
         print(train_input_x_classified[iter][0][0])
         break
 
@@ -36,15 +37,15 @@ if __name__ == "__main__":
     train_input_y = train_input_data[1:, 1:2]
 
 
-    # STORE CLASSIFIED TRAINING DATA
-    train_input_x_classified_list = []
-    for iter in range(class_amount):
-        train_input_x_classified_list.append([])
-
-    train_input_sample_amount = train_input_y.shape[0]
-
-    for iter in range(train_input_sample_amount):
-        train_input_x_classified_list[int(train_input_y[iter])].append(train_input_x[iter])
+    # # STORE CLASSIFIED TRAINING DATA
+    # train_input_x_classified_list = []
+    # for iter in range(class_amount):
+    #     train_input_x_classified_list.append([])
+    #
+    # train_input_sample_amount = train_input_y.shape[0]
+    #
+    # for iter in range(train_input_sample_amount):
+    #     train_input_x_classified_list[int(train_input_y[iter])].append(train_input_x[iter])
 
     train_input_x_classified = np.array(train_input_x_classified_list)
 
@@ -61,7 +62,7 @@ if __name__ == "__main__":
     test_input_x = np.array(test_input_data_list)
 
     # GAUSSIAN
-    gaussianNaiveBayes(train_input_x_classified, test_input_x)
+    gaussianNaiveBayes(train_input_x, train_input_y, test_input_x)
 
 
 
