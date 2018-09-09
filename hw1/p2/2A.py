@@ -1,10 +1,16 @@
 import csv
-from typing import TextIO
-
 import numpy as np
 from sklearn.naive_bayes import GaussianNB
+from sklearn.naive_bayes import BernoulliNB
 
 class_amount = 10
+
+def featureShape(input_x):
+    input_x_reshape = []
+    sample_amount = input_x.shape[0]
+    for iter in range(sample_amount):
+        input_x_reshape.append(np.reshape(input_x[iter], [28, 28]))
+    return input_x_reshape
 
 def gaussianNaiveBayes(train_input_x, train_input_y, test_input_x):
     # # initialize
@@ -22,6 +28,27 @@ def gaussianNaiveBayes(train_input_x, train_input_y, test_input_x):
 
     test_output_y = classifier.predict(test_input_x)
     return test_output_y
+
+def bernoulliNaiveBayes(train_input_x, train_input_y, test_input_x):
+    classifier = BernoulliNB()
+    classifier.fit(train_input_x, train_input_y.ravel())
+
+    test_output_y = classifier.predict(test_input_x)
+    return test_output_y
+
+def writeCsvFile(filename, test_output_y):
+    with open(filename, "w") as test_output_file:
+        test_output_writer = csv.writer(test_output_file)
+
+        fileHeader = ["ImageId", "Label"]
+        test_output_writer.writerow(fileHeader)
+
+        test_sample_amount = test_output_y.shape[0]
+        content = []
+        for iter in range(test_sample_amount):
+            content.append([iter, int(test_output_y[iter])])
+        test_output_writer.writerows(content)
+
 
 
 if __name__ == "__main__":
@@ -44,7 +71,6 @@ if __name__ == "__main__":
     train_input_x = np.array(train_input_x).astype(np.float)
     train_input_y = train_input_data[1:, 1:2]
     train_input_y = np.array(train_input_y).astype(np.float)
-
 
     # # STORE CLASSIFIED TRAINING DATA
     # train_input_x_classified_list = []
@@ -70,19 +96,21 @@ if __name__ == "__main__":
     test_input_x = np.array(test_input_data_list)
     test_input_x = np.array(test_input_x).astype(np.float)
 
-    # GAUSSIAN + UNTOUCHED
-    test_output_y = gaussianNaiveBayes(train_input_x, train_input_y, test_input_x)
-    with open("shuyuel2_1.csv", "w") as test_output_file_1:
-        test_output_writer_1 = csv.writer(test_output_file_1)
+    # 1. GAUSSIAN + UNTOUCHED
+    # test_output_y = gaussianNaiveBayes(train_input_x, train_input_y, test_input_x)
+    # writeCsvFile("shuyuel2_1.csv", test_output_y)
 
-        fileHeader = ["ImageId", "Label"]
-        test_output_writer_1.writerow(fileHeader)
+    # 3. BERNOULLI + UNTOUCHED
+    # test_output_y = bernoulliNaiveBayes(train_input_x, train_input_y, test_input_x)
+    # writeCsvFile("shuyuel2_3.csv", test_output_y)
 
-        test_sample_amount = test_output_y.shape[0]
-        content = []
-        for iter in range(test_sample_amount):
-            content.append([iter, int(test_output_y[iter])])
-        test_output_writer_1.writerows(content)
+    # RESHAPE FEATURE VECTORS
+    train_input_x_reshape = featureShape(train_input_x)
+    test_input_x_reshape = featureShape(test_input_x)
+
+
+
+
 
 
 
