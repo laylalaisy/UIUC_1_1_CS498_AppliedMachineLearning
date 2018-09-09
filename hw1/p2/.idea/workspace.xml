@@ -11,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/p2$2A.coverage" NAME="2A Coverage Results" MODIFIED="1536529178246" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/p2$2A.coverage" NAME="2A Coverage Results" MODIFIED="1536531616926" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -40,22 +40,22 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="9" />
+          <entry key="py" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="9" />
+          <entry key="Python" value="11" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="6153" />
+          <entry key="py" value="6414" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="6153" />
+          <entry key="Python" value="6414" />
         </counts>
       </usages-collector>
     </session>
@@ -68,14 +68,23 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2A.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="211">
-              <caret line="127" lean-forward="true" selection-start-line="127" selection-end-line="127" />
+            <state relative-caret-position="403">
+              <caret line="147" lean-forward="true" selection-start-line="147" selection-end-line="147" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1536529178227" expanded="true" signature="439:1373" ph="..." />
-                <marker date="1536529178227" expanded="true" signature="1440:1445" ph="..." />
-                <marker date="1536529178227" expanded="true" signature="2235:2666" ph="..." />
+                <marker date="1536531616892" expanded="true" signature="560:1610" ph="..." />
+                <marker date="1536531616892" expanded="true" signature="1677:1682" ph="..." />
+                <marker date="1536531616892" expanded="true" signature="2472:2903" ph="..." />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$USER_HOME$/anaconda3/envs/cs498/lib/python3.6/site-packages/numpy/core/fromnumeric.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="254">
+              <caret line="60" selection-start-line="60" selection-end-line="60" />
             </state>
           </provider>
         </entry>
@@ -302,15 +311,22 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/cs498/lib/python3.6/site-packages/numpy/core/fromnumeric.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="254">
+          <caret line="60" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/2A.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="211">
-          <caret line="127" lean-forward="true" selection-start-line="127" selection-end-line="127" />
+        <state relative-caret-position="403">
+          <caret line="147" lean-forward="true" selection-start-line="147" selection-end-line="147" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1536529178227" expanded="true" signature="439:1373" ph="..." />
-            <marker date="1536529178227" expanded="true" signature="1440:1445" ph="..." />
-            <marker date="1536529178227" expanded="true" signature="2235:2666" ph="..." />
+            <marker date="1536531616892" expanded="true" signature="560:1610" ph="..." />
+            <marker date="1536531616892" expanded="true" signature="1677:1682" ph="..." />
+            <marker date="1536531616892" expanded="true" signature="2472:2903" ph="..." />
           </folding>
         </state>
       </provider>

@@ -11,34 +11,38 @@ def featureShape(input_x):
     sample_amount = input_x.shape[0]
     for iter in range(sample_amount):
         input_x_reshape.append(np.reshape(input_x[iter], [28, 28]))
+    input_x_reshape = np.array(input_x_reshape)
+    input_x_reshape = np.array(input_x_reshape).astype(np.float)
     return input_x_reshape
 
-def stretchedBoundingBox(input_x):
+def stretchedBoundingBox(input_x_reshape):
     input_x_stretched = []
-    sample_amount = input_x.shape[0]
-    row_left = 0
-    row_right = origin_scale
-    col_down = 0
-    col_up = origin_scale
+    sample_amount = len(input_x_reshape)
     for iter in range(sample_amount):
+        row_left = origin_scale
+        row_right = 0
+        col_down = origin_scale
+        col_up = 0
         for row in range(origin_scale):
             for col in range(origin_scale):
-                if(input_x[iter][row][col] > 0):
-                    if(row < row_left):
-                        row_left = row
-                    if(row > row_right):
+                if(input_x_reshape[iter][row][col]>0):
+                    if(row<row_left):
+                        row_left=row
+                    if(row>row_right):
                         row_right = row
-                    if(col < col_down):
+                    if(col<col_down):
                         col_down = col
-                    if(col > col_up):
-                        col_up = col
+                    if(col>col_up):
+                        col_up=col
         row_new = []
         for row in range(col_down, col_up):
             col_new = []
             for col in range(row_left, row_right):
-                col_new.append(input_x[row][col])
+                col_new.append(input_x_reshape[iter][row][col])
             row_new.append(col_new)
-        input_x_stretched.append(np.reshape(row_new, (20, 20)))
+        row_new = np.array(row_new)
+        row_new = np.array(row_new).astype(np.float)
+        input_x_stretched.append(np.resize(row_new, (20, 20)))
 
     return input_x_stretched
 
@@ -140,7 +144,7 @@ if __name__ == "__main__":
 
     # STRETCHED BOUNDING BOX
     train_input_x_stretched = stretchedBoundingBox(train_input_x_reshape)
-    print(train_input_x_stretched)
+    test_input_x_stretched = stretchedBoundingBox(test_input_x_reshape)
 
 
 
