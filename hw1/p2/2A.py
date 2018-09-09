@@ -4,6 +4,7 @@ from sklearn.naive_bayes import GaussianNB
 from sklearn.naive_bayes import BernoulliNB
 
 class_amount = 10
+origin_scale = 28
 
 def featureShape(input_x):
     input_x_reshape = []
@@ -11,6 +12,35 @@ def featureShape(input_x):
     for iter in range(sample_amount):
         input_x_reshape.append(np.reshape(input_x[iter], [28, 28]))
     return input_x_reshape
+
+def stretchedBoundingBox(input_x):
+    input_x_stretched = []
+    sample_amount = input_x.shape[0]
+    row_left = 0
+    row_right = origin_scale
+    col_down = 0
+    col_up = origin_scale
+    for iter in range(sample_amount):
+        for row in range(origin_scale):
+            for col in range(origin_scale):
+                if(input_x[iter][row][col] > 0):
+                    if(row < row_left):
+                        row_left = row
+                    if(row > row_right):
+                        row_right = row
+                    if(col < col_down):
+                        col_down = col
+                    if(col > col_up):
+                        col_up = col
+        row_new = []
+        for row in range(col_down, col_up):
+            col_new = []
+            for col in range(row_left, row_right):
+                col_new.append(input_x[row][col])
+            row_new.append(col_new)
+        input_x_stretched.append(np.reshape(row_new, (20, 20)))
+
+    return input_x_stretched
 
 def gaussianNaiveBayes(train_input_x, train_input_y, test_input_x):
     # # initialize
@@ -108,6 +138,9 @@ if __name__ == "__main__":
     train_input_x_reshape = featureShape(train_input_x)
     test_input_x_reshape = featureShape(test_input_x)
 
+    # STRETCHED BOUNDING BOX
+    train_input_x_stretched = stretchedBoundingBox(train_input_x_reshape)
+    print(train_input_x_stretched)
 
 
 
