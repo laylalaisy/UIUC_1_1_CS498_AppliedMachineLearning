@@ -1,15 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3aa3f1fe-ec67-47ed-b810-554e5b7fdfe5" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/../p1/.RData" beforeDir="false" afterPath="$PROJECT_DIR$/../p1/.RData" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../p1/.Rhistory" beforeDir="false" afterPath="$PROJECT_DIR$/../p1/.Rhistory" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../p1/A.R" beforeDir="false" afterPath="$PROJECT_DIR$/../p1/A.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../p1/B.R" beforeDir="false" afterPath="$PROJECT_DIR$/../p1/B.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../p1/D.R" beforeDir="false" afterPath="$PROJECT_DIR$/../p1/D.R" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/2A.py" beforeDir="false" afterPath="$PROJECT_DIR$/2A.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/result/shuyuel2_11.csv" beforeDir="false" afterPath="$PROJECT_DIR$/result/shuyuel2_11.csv" afterDir="false" />
-    </list>
+    <list default="true" id="3aa3f1fe-ec67-47ed-b810-554e5b7fdfe5" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +9,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/p2$2A.coverage" NAME="2A Coverage Results" MODIFIED="1536558654866" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/p2$2A.coverage" NAME="2A Coverage Results" MODIFIED="1536560125029" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -37,7 +29,7 @@
     <session id="1526322638">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="5" />
+          <entry key="project.closed" value="6" />
           <entry key="project.open.time.18" value="1" />
           <entry key="project.open.time.20" value="3" />
           <entry key="project.open.time.22" value="1" />
@@ -76,7 +68,7 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/2A.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
+            <state relative-caret-position="988">
               <caret line="226" column="40" selection-start-line="226" selection-start-column="40" selection-end-line="226" selection-end-column="40" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
@@ -226,7 +218,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-11" width="1857" height="947" extended-state="6" />
+    <frame x="64" y="-11" width="2497" height="1317" extended-state="6" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.50058895" side_tool="true" weight="0.091874234" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.499391" weight="0.0" />
@@ -239,7 +231,7 @@
       <window_info anchor="bottom" id="Docker" order="5" show_stripe_button="false" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Find" order="7" sideWeight="0.4993447" weight="0.32959446" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.49737877" visible="true" weight="0.43156597" />
+      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.49737877" weight="0.29635903" />
       <window_info anchor="bottom" id="Debug" order="9" sideWeight="0.4977542" weight="0.37532356" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
@@ -320,7 +312,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/2A.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
+        <state relative-caret-position="988">
           <caret line="226" column="40" selection-start-line="226" selection-start-column="40" selection-end-line="226" selection-end-column="40" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
