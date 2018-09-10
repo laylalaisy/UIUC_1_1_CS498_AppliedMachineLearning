@@ -81,8 +81,16 @@ def meanImage(test_input_x, test_output_y):
 
     test_sample_amount = test_output_y.shape[0]
     for iter in range(test_sample_amount):
-       test_input_x_classified[int(test_output_y[iter])].append(test_input_x[iter])
-    test_input_x_classified = np.array(test_input_x_classified).astype(float)
+        lable = int(test_output_y[iter])
+        test_input_x_classified[lable].append(test_input_x[iter])
+
+    meanPixel = []
+    for iter in range(class_amount):
+        test_input_x_classified[iter] = np.array(test_input_x_classified[iter]).astype(float)
+        meanPixel.append(np.mean(test_input_x_classified[iter], axis=0))
+
+
+
 
     return test_input_x_classified
 
@@ -117,8 +125,7 @@ if __name__ == "__main__":
         # close testing csv file
         test_input_file.close()
 
-    test_input_x = np.array(test_input_data_list)
-    test_input_x = np.array(test_input_x).astype(np.float)
+    test_input_x = np.array(test_input_data_list).astype(np.float)
 
     # RESHAPE FEATURE VECTORS
     train_input_x_reshape = featureShape(train_input_x)
