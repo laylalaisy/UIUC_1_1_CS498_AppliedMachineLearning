@@ -5,7 +5,8 @@ library(klaR)
 library(caret)
 
 # set current work path
-setwd('./')
+current_path <- '/home/layla/Desktop/cs498/hw1/p1'
+setwd(current_path)
 
 # read in csv file
 input_data <- read.csv('pima-indians-diabetes.csv', header=FALSE)

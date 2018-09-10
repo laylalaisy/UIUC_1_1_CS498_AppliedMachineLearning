@@ -228,8 +228,8 @@ if __name__ == "__main__":
     test_output_y = randomForest(30, 4, train_input_x_stretched, train_input_y, test_input_x_stretched)
     writeCsvFile("shuyuel2_10.csv", test_output_y)
 
-    # 11. 30 TREES + 16 DEPTH + UNTOUCHED
-    test_output_y = randomForest(30, 16, train_input_x_stretched, train_input_y, test_input_x_stretched)
+    # # 11. 30 TREES + 16 DEPTH + UNTOUCHED
+    test_output_y = randomForest(30, 16, train_input_x, train_input_y, test_input_x)
     writeCsvFile("shuyuel2_11.csv", test_output_y)
 
     # 12. 30 TREES + 16 DEPTH + STRETCHED
