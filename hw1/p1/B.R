@@ -1,4 +1,4 @@
-# Build a simple naive Bayes classifier to classify this data set.
+# Build Naive Bayes classifier to classify this data set.
 
 # load library
 library(klaR)
@@ -18,9 +18,8 @@ input_y <- input_data[,9]      # labels
 for (index_feature in c(3, 5, 6, 8))
 {
   index_NA <- input_x[, index_feature] == 0
-  input_x[index_NA, index_feature]=NA
+  input_x[index_NA, index_feature] = NA
 }
-
 
 # number of times
 iters = 10
@@ -33,7 +32,7 @@ test_accuracy <- array(dim=iters)
 for (iter in 1:iters)
 {
   # TRAIN
-  # extract train data by randomly assigning 80% of the data to train
+  # extract train data by randomly choosing 80% from origin dataset
   train_index <- createDataPartition(y=input_y, p=.8, list=FALSE)
 
   # extract training feature vectors and labels
