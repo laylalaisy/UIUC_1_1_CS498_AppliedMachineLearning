@@ -1,5 +1,7 @@
 import csv
 import numpy as np
+import matplotlib.image as mpimg
+from PIL import Image
 from sklearn.naive_bayes import GaussianNB
 from sklearn.naive_bayes import BernoulliNB
 
@@ -72,7 +74,7 @@ def writeCsvFile(filename, test_output_y):
             content.append([iter, int(test_output_y[iter])])
         test_output_writer.writerows(content)
 
-def meanImage(test_input_x, test_output_y):
+def meanImage(test_input_x, test_output_y, scale):
     # STORE CLASSIFIED TRAINING DATA
     test_input_x_classified = []
     test_sample_amount = test_output_y.shape[0]
@@ -89,8 +91,13 @@ def meanImage(test_input_x, test_output_y):
         test_input_x_classified[iter] = np.array(test_input_x_classified[iter]).astype(float)
         meanPixel.append(np.mean(test_input_x_classified[iter], axis=0))
 
-
-
+    for iter in range(class_amount):
+        meanPixel[iter] = np.reshape(meanPixel[iter], [scale, scale])
+        image = Image.fromarray(meanPixel[iter])
+        image.show()
+        image = image.convert("L")
+        image.save("test.png")
+        break
 
     return test_input_x_classified
 
@@ -140,7 +147,7 @@ if __name__ == "__main__":
     writeCsvFile("shuyuel2_1.csv", test_output_y)
 
     test_output_y = np.array(test_output_y).astype(float)
-    meanImage(test_input_x, test_output_y)
+    meanImage(test_input_x, test_output_y, 28)
 
 
     # 2. GAUSSIAN + STRETCHED
