@@ -1,6 +1,6 @@
 import csv
 import numpy as np
-import matplotlib.image as mpimg
+import skimage.transform
 from PIL import Image
 from sklearn.naive_bayes import GaussianNB
 from sklearn.naive_bayes import BernoulliNB
@@ -23,8 +23,8 @@ def stretchedBoundingBox(input_x_reshape):
     for iter in range(sample_amount):
         row_left = origin_scale
         row_right = 0
-        col_down = origin_scale
-        col_up = 0
+        col_down = 0
+        col_up = origin_scale
         for row in range(origin_scale):
             for col in range(origin_scale):
                 if(input_x_reshape[iter][row][col]>0):
@@ -32,18 +32,18 @@ def stretchedBoundingBox(input_x_reshape):
                         row_left=row
                     if(row>row_right):
                         row_right = row
-                    if(col<col_down):
+                    if(col<col_up):
+                        col_up = col
+                    if(col>col_down):
                         col_down = col
-                    if(col>col_up):
-                        col_up=col
         row_new = []
-        for row in range(col_down, col_up):
+        for row in range(col_up, col_down):
             col_new = []
             for col in range(row_left, row_right):
                 col_new.append(input_x_reshape[iter][row][col])
             row_new.append(col_new)
         row_new = np.array(row_new).astype(np.float)
-        input_x_stretched.append(np.resize(row_new, (20, 20)).ravel())
+        input_x_stretched.append(skimage.transform.resize(np.array(row_new), (20, 20), preserve_range=True).ravel())
 
     return input_x_stretched
 
@@ -74,7 +74,7 @@ def writeCsvFile(filename, test_output_y):
             content.append([iter, int(test_output_y[iter])])
         test_output_writer.writerows(content)
 
-def meanImage(test_input_x, test_output_y, scale):
+def meanImage(test_input_x, test_output_y, scale, image_name):
     # STORE CLASSIFIED TRAINING DATA
     test_input_x_classified = []
     test_sample_amount = test_output_y.shape[0]
@@ -94,10 +94,10 @@ def meanImage(test_input_x, test_output_y, scale):
     for iter in range(class_amount):
         meanPixel[iter] = np.reshape(meanPixel[iter], [scale, scale])
         image = Image.fromarray(meanPixel[iter])
-        image.show()
+        # image.show()
         image = image.convert("L")
-        image.save("test.png")
-        break
+        image_file_name = image_name + str(iter) + ".png"
+        image.save(image_file_name)
 
     return test_input_x_classified
 
@@ -143,24 +143,29 @@ if __name__ == "__main__":
     test_input_x_stretched = stretchedBoundingBox(test_input_x_reshape)
 
     # 1. GAUSSIAN + UNTOUCHED
-    test_output_y = gaussianNaiveBayes(train_input_x, train_input_y, test_input_x)
-    writeCsvFile("shuyuel2_1.csv", test_output_y)
-
-    test_output_y = np.array(test_output_y).astype(float)
-    meanImage(test_input_x, test_output_y, 28)
+    # test_output_y = gaussianNaiveBayes(train_input_x, train_input_y, test_input_x)
+    # writeCsvFile("shuyuel2_1.csv", test_output_y)
+    # test_output_y = np.array(test_output_y).astype(float)
+    # meanImage(test_input_x, test_output_y, 28, "shuyuel2_1_")
 
 
     # 2. GAUSSIAN + STRETCHED
-    # test_output_y = gaussianNaiveBayes(train_input_x_stretched, train_input_y, test_input_x_stretched)
-    # writeCsvFile("shuyuel2_2.csv", test_output_y)
+    test_output_y = gaussianNaiveBayes(train_input_x_stretched, train_input_y, test_input_x_stretched)
+    writeCsvFile("shuyuel2_2.csv", test_output_y)
+    test_output_y = np.array(test_output_y).astype(float)
+    meanImage(test_input_x_stretched, test_output_y, 20, "shuyuel2_2_")
 
     # 3. BERNOULLI + UNTOUCHED
     # test_output_y = bernoulliNaiveBayes(train_input_x, train_input_y, test_input_x)
     # writeCsvFile("shuyuel2_3.csv", test_output_y)
+    # test_output_y = np.array(test_output_y).astype(float)
+    # meanImage(test_input_x, test_output_y, 28, "shuyuel2_3_")
 
     # 4. BERNOULLI + STRETCHED
-    # test_output_y = bernoulliNaiveBayes(train_input_x_stretched, train_input_y, test_input_x_stretched)
-    # writeCsvFile("shuyuel2_4.csv", test_output_y)
+    test_output_y = bernoulliNaiveBayes(train_input_x_stretched, train_input_y, test_input_x_stretched)
+    writeCsvFile("shuyuel2_4.csv", test_output_y)
+    test_output_y = np.array(test_output_y).astype(float)
+    meanImage(test_input_x_stretched, test_output_y, 20, "shuyuel2_4_")
 
 
 
