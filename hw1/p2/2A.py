@@ -4,6 +4,7 @@ import skimage.transform
 from PIL import Image
 from sklearn.naive_bayes import GaussianNB
 from sklearn.naive_bayes import BernoulliNB
+from sklearn.ensemble import RandomForestClassifier
 
 class_amount = 10
 origin_scale = 28
@@ -46,21 +47,6 @@ def stretchedBoundingBox(input_x_reshape):
         input_x_stretched.append(skimage.transform.resize(np.array(row_new), (20, 20), preserve_range=True).ravel())
 
     return input_x_stretched
-
-def gaussianNaiveBayes(train_input_x, train_input_y, test_input_x):
-    classifier = GaussianNB()
-    classifier.fit(train_input_x, train_input_y.ravel())
-
-    test_output_y = classifier.predict(test_input_x)
-    return test_output_y
-
-def bernoulliNaiveBayes(train_input_x, train_input_y, test_input_x):
-    classifier = BernoulliNB()
-    classifier.fit(train_input_x, train_input_y.ravel())
-
-    test_output_y = classifier.predict(test_input_x)
-    return test_output_y
-
 def writeCsvFile(filename, test_output_y):
     with open(filename, "w") as test_output_file:
         test_output_writer = csv.writer(test_output_file)
@@ -101,8 +87,29 @@ def meanImage(test_input_x, test_output_y, scale, image_name):
 
     return test_input_x_classified
 
-if __name__ == "__main__":
+def gaussianNaiveBayes(train_input_x, train_input_y, test_input_x):
+    classifier = GaussianNB()
+    classifier.fit(train_input_x, train_input_y.ravel())
 
+    test_output_y = classifier.predict(test_input_x)
+    return test_output_y
+
+def bernoulliNaiveBayes(train_input_x, train_input_y, test_input_x):
+    classifier = BernoulliNB()
+    classifier.fit(train_input_x, train_input_y.ravel())
+
+    test_output_y = classifier.predict(test_input_x)
+    return test_output_y
+
+def randomForest(num_tree, max_depth, train_input_x, train_input_y, test_input_x):
+    classifier = RandomForestClassifier(n_estimators=num_tree, criterion='entropy', max_depth=max_depth)
+    classifier.fit(train_input_x, train_input_y)
+
+    test_output_y = classifier.predict(test_input_x)
+    return test_output_y
+
+
+if __name__ == "__main__":
     # READ IN TRAINING DATA
     with open("./train.csv", "r") as train_input_file:
         train_input_reader = csv.reader(train_input_file)
@@ -150,10 +157,10 @@ if __name__ == "__main__":
 
 
     # 2. GAUSSIAN + STRETCHED
-    test_output_y = gaussianNaiveBayes(train_input_x_stretched, train_input_y, test_input_x_stretched)
-    writeCsvFile("shuyuel2_2.csv", test_output_y)
-    test_output_y = np.array(test_output_y).astype(float)
-    meanImage(test_input_x_stretched, test_output_y, 20, "shuyuel2_2_")
+    # test_output_y = gaussianNaiveBayes(train_input_x_stretched, train_input_y, test_input_x_stretched)
+    # writeCsvFile("shuyuel2_2.csv", test_output_y)
+    # test_output_y = np.array(test_output_y).astype(float)
+    # meanImage(test_input_x_stretched, test_output_y, 20, "shuyuel2_2_")
 
     # 3. BERNOULLI + UNTOUCHED
     # test_output_y = bernoulliNaiveBayes(train_input_x, train_input_y, test_input_x)
@@ -162,13 +169,42 @@ if __name__ == "__main__":
     # meanImage(test_input_x, test_output_y, 28, "shuyuel2_3_")
 
     # 4. BERNOULLI + STRETCHED
-    test_output_y = bernoulliNaiveBayes(train_input_x_stretched, train_input_y, test_input_x_stretched)
-    writeCsvFile("shuyuel2_4.csv", test_output_y)
-    test_output_y = np.array(test_output_y).astype(float)
-    meanImage(test_input_x_stretched, test_output_y, 20, "shuyuel2_4_")
+    # test_output_y = bernoulliNaiveBayes(train_input_x_stretched, train_input_y, test_input_x_stretched)
+    # writeCsvFile("shuyuel2_4.csv", test_output_y)
+    # test_output_y = np.array(test_output_y).astype(float)
+    # meanImage(test_input_x_stretched, test_output_y, 20, "shuyuel2_4_")
 
+    # 5. 10 TREES + 4 DEPTH + UNTOUCHED
+    test_output_y = randomForest(10, 4, train_input_x, train_input_y, test_input_x)
+    writeCsvFile("shuyuel2_5.csv", test_output_y)
 
+    # 6. 10 TREES + 4 DEPTH + STRETCHED
+    test_output_y = randomForest(10, 4, train_input_x_stretched, train_input_y, test_input_x_stretched)
+    writeCsvFile("shuyuel2_6.csv", test_output_y)
 
+    # 7. 10 TREES + 16 DEPTH + UNTOUCHED
+    test_output_y = randomForest(10, 16, train_input_x, train_input_y, test_input_x)
+    writeCsvFile("shuyuel2_7.csv", test_output_y)
+
+    # 8. 10 TREES + 16 DEPTH + STRETCHED
+    test_output_y = randomForest(10, 16, train_input_x_stretched, train_input_y, test_input_x_stretched)
+    writeCsvFile("shuyuel2_8.csv", test_output_y)
+
+    # 9. 30 TREES + 4 DEPTH + UNTOUCHED
+    test_output_y = randomForest(30, 4, train_input_x, train_input_y, test_input_x)
+    writeCsvFile("shuyuel2_9.csv", test_output_y)
+
+    # 10. 30 TREES + 4 DEPTH + STRETCHED
+    test_output_y = randomForest(30, 4, train_input_x_stretched, train_input_y, test_input_x_stretched)
+    writeCsvFile("shuyuel2_10.csv", test_output_y)
+
+    # 11. 30 TREES + 16 DEPTH + UNTOUCHED
+    test_output_y = randomForest(30, 16, train_input_x_stretched, train_input_y, test_input_x_stretched)
+    writeCsvFile("shuyuel2_11.csv", test_output_y)
+
+    # 12. 30 TREES + 16 DEPTH + STRETCHED
+    test_output_y = randomForest(30, 16, train_input_x_stretched, train_input_y, test_input_x_stretched)
+    writeCsvFile("shuyuel2_12.csv", test_output_y)
 
 
 
