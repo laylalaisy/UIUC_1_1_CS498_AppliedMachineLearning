@@ -17,12 +17,10 @@ if __name__ == "__main__":
 
     # get training data set size
     [train_sample_amount, train_feature_amount] = train_input_data.shape
-    train_sample_amount = train_sample_amount - 1       # sampel_index: 0 - sample_amount
-    train_feature_amount = train_feature_amount - 1     # feature_index: 0 - feature_amount
 
     # extract data of feature and label
-    train_input_x = train_input_data[:, :train_feature_amount-1]
-    train_input_y = train_input_data[:, train_feature_amount]
+    train_input_x = train_input_data[:, :train_feature_amount-2]
+    train_input_y = train_input_data[:, train_feature_amount-1]
 
 
     ## READ IN TESTING DATA
@@ -42,7 +40,16 @@ if __name__ == "__main__":
     ## RESCALE
     # Scale these variables so that each has unit variance
     # And subtract the mean so that each has zero mean
-    train_input_x_rescaled = preprocessing.StandardScaler(train_input_x[:, 1:train_feature_amount-1], with_mean=True, with_std=True)
+    train_input_x_rescaled = preprocessing.StandardScaler(train_input_x[:, 1:train_feature_amount-2], with_mean=True, with_std=True)
     test_input_x_rescaled = preprocessing.StandardScaler(test_input_x[:, 1:], with_mean=True, with_std=True)
 
-    print(train_input_data.dtype)
+    amount_epoch = 5
+    amount_step = 300
+    amount_validation = 50
+    for i in range(amount_epoch):
+        index_epoch = np.random.choice(train_sample_amount, size=amount_step + amount_validation, replace=False)
+        train_input_x_epoch = train_input_x[index_epoch, :]
+        index_step = np.random.choice(train_input_x_epoch.shape[0], size=amount_step, replace=False)
+        train_input_x_step = train_input_x_epoch[index_step, :]
+        index_validation = np.delete(train_input_x_epoch, index_step, axis=0)
+
