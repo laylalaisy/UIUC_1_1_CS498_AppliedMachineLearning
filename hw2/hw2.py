@@ -11,9 +11,9 @@ def stochasticGradientDescent(trainX, trainY, validationX, validationY, regulari
 
     # GRADIENT DESCENT
     for iter_step in range(train_sample_amount):
-        predictY = trainY[iter_step] * ((a.T).dot(trainX[iter_step, :]) + b)
-        print(trainY[iter_step])
-
+        predictY = ((a.T).dot(trainX[iter_step, :]) + b)
+        gi = max(0, 1- trainY[iter_step] * predictY)
+        print(gi)
 
 if __name__ == "__main__":
 
@@ -45,11 +45,11 @@ if __name__ == "__main__":
 
     train_input_y = train_input_data[:, train_feature_amount-1]
     for iter_y in range(0, train_sample_amount):
-        if train_input_y[iter_y] == '<=50K':
+        if train_input_y[iter_y] == ' <=50K':
             train_input_y[iter_y] = -1
         else:
             train_input_y[iter_y] = 1
-
+    train_input_y = np.array(train_input_y).astype(int)
 
     ## READ IN TESTING DATA
     with open("./Data/test.data", "r") as test_input_file:
