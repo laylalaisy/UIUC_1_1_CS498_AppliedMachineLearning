@@ -5,13 +5,15 @@ import numpy as np
 def stochasticGradientDescent(trainX, trainY, validationX, validationY, regularizer, step_length):
     [train_sample_amount, train_feature_amount] = trainX.shape
 
-
     ## INITIALIZE a AND b
-    a = np.ones([train_feature_amount]).astype(float)
-    b = 1
+    a = np.ones([train_feature_amount], dtype=float)
+    b = 1.00
 
-    #for step in range(train_input_x):
-    print(a)
+    # GRADIENT DESCENT
+    for iter_step in range(train_sample_amount):
+        print(trainX[iter_step, :])
+        predictY = (a.T).dot(trainX[iter_step, :]) + b
+
 
 if __name__ == "__main__":
 
@@ -28,6 +30,11 @@ if __name__ == "__main__":
 
     # get training data set size
     [train_sample_amount, train_feature_amount] = train_input_data.shape
+    label_encoder = preprocessing.LabelEncoder()
+    for iter in range(1, train_feature_amount):
+        label_encoder.fit(train_input_data[:, iter])
+        train_input_data[:, iter] = label_encoder.transform(train_input_data[:, iter])
+    print(train_input_data)
 
     # extract data of feature and label
     train_input_x = train_input_data[:, :train_feature_amount-2]
@@ -73,5 +80,5 @@ if __name__ == "__main__":
 
         # step_length
         step_length = 1.0 / ((0.01 * iter_epoch) + 50)
-        stochasticGradientDescent(train_input_x_step, train_input_y_step, train_input_x__validation, train_input_y__validation, 1, step_length)
+        # stochasticGradientDescent(train_input_x_step, train_input_y_step, train_input_x__validation, train_input_y__validation, 1, step_length)
 
