@@ -9,7 +9,7 @@ feature_amount = 6
 def stochasticGradientDescent(train_input_x, train_input_y, regularizer, train_sample_amount):
 
     ## INITIALIZE a AND b
-    a = np.matrix('1,1,1,1,1,1')
+    a = np.array([1, 1, 1, 1, 1, 1])
     b = 1.00
 
     # GRADIENT DESCENT
@@ -56,7 +56,7 @@ def stochasticGradientDescent(train_input_x, train_input_y, regularizer, train_s
     accuracy_validation = correct_amount / amount_validation
 
     print(accuracy_validation)
-    return a, b
+    return a, b, accuracy_validation
 
 # output result in csv file
 def writeCsvFile(filename, test_output_y):
@@ -133,8 +133,10 @@ if __name__ == "__main__":
 
 
     ## TEST
+    best_accuracy = 0
+
     for regularizer in [0.001, 0.01, 0.1, 1]:
-        [a, b] = stochasticGradientDescent(train_input_x_rescaled, train_input_y, regularizer, train_sample_amount)
+        [a, b, accuracy] = stochasticGradientDescent(train_input_x_rescaled, train_input_y, regularizer, train_sample_amount)
 
 
     test_output_y = []
