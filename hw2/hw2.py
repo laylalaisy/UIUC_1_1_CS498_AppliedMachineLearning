@@ -8,13 +8,17 @@ feature_amount = 6
 
 def stochasticGradientDescent(train_input_x, train_input_y, regularizer, train_sample_amount):
 
+    ## INITIALIZE LIST OF ACCURACY ANF MAGNITUDE
+    list_accuracy = []
+    list_magnitude = []
+
     ## INITIALIZE a AND b
     a = np.array([1, 1, 1, 1, 1, 1])
     b = 1.00
 
     # GRADIENT DESCENT
     ## TRAIN
-    amount_epoch = 500
+    amount_epoch = 50
     amount_step = 300
     amount_validation = 50
 
@@ -46,6 +50,20 @@ def stochasticGradientDescent(train_input_x, train_input_y, regularizer, train_s
                 a = a - step_length * (regularizer * a - yi * xi)
                 b = b + step_length * yi
 
+            # EVERY 30 STEPS
+            if(iter_step % 30 == 0):
+                # predict label of training set and get accuracy
+                correct_amount = 0
+                for iter_y in range(amount_step):
+                    if train_input_y_step[iter_y] * ((a).dot(train_input_x_step[iter_y, :]) + b) > 0:
+                        correct_amount = correct_amount + 1
+                accuracy = float(correct_amount / amount_step)
+                list_accuracy.append(accuracy)
+
+                # get magnitude
+                magnitude = (a).dot(a.T)
+                list_magnitude.append(magnitude)
+
     # predict label of validation set
     correct_amount = 0
     for iter_y in range(amount_validation):
@@ -55,8 +73,7 @@ def stochasticGradientDescent(train_input_x, train_input_y, regularizer, train_s
     # calculate accuracy
     accuracy_validation = correct_amount / amount_validation
 
-    print(accuracy_validation)
-    return a, b, accuracy_validation
+    return a, b, accuracy_validation, list_accuracy, list_magnitude
 
 # output result in csv file
 def writeCsvFile(filename, test_output_y):
@@ -132,20 +149,33 @@ if __name__ == "__main__":
     np.array(test_input_x_rescaled).astype(float)
 
 
-    ## TEST
+    ## VALIDATION TO GET BEST REGULARIZER
     best_accuracy = 0
-
+    best_a = np.array([1, 1, 1, 1, 1, 1])
+    best_b = 1.00
+    best_regularizer = 0
+    accuray = []
+    magnitude = []
     for regularizer in [0.001, 0.01, 0.1, 1]:
-        [a, b, accuracy] = stochasticGradientDescent(train_input_x_rescaled, train_input_y, regularizer, train_sample_amount)
+        [current_a, current_b, current_accuracy, list_accuracy, list_magnitude] = stochasticGradientDescent(train_input_x_rescaled, train_input_y, regularizer, train_sample_amount)
+        if current_accuracy > best_accuracy:
+            best_a = current_a
+            best_b = current_b
+            best_accuracy = current_accuracy
+            best_regularizer = regularizer
+
+        accuray.append(list_accuracy)
+        magnitude.append(list_magnitude)
 
 
+    ## TEST
     test_output_y = []
     for iter_y in range(test_sample_amount):
-        if (a).dot(test_input_x_rescaled[iter_y, :]) + b > 0:
+        if best_a.dot(test_input_x_rescaled[iter_y, :]) + best_b > 0:
             test_output_y.append('>50K')
         else:
             test_output_y.append('<=50K')
 
     test_output_y = np.array(test_output_y)
 
-    writeCsvFile("demo.csv", test_output_y)
+    writeCsvFile("hw2.csv", test_output_y)
