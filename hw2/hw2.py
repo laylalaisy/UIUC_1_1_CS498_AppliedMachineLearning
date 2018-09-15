@@ -31,13 +31,14 @@ def stochasticGradientDescent(train_input_x, train_input_y, regularizer, train_s
         index_step = np.random.choice(train_input_x_epoch.shape[0], size=amount_step, replace=False)
         train_input_x_step = train_input_x_epoch[index_step, :]
         train_input_y_step = train_input_y_epoch[index_step]
-        train_input_x__validation = np.delete(train_input_x_epoch, index_step, axis=0)
-        train_input_y__validation = np.delete(train_input_y_epoch, index_step, axis=0)
+        train_input_x_validation = np.delete(train_input_x_epoch, index_step, axis=0)
+        train_input_y_validation = np.delete(train_input_y_epoch, index_step, axis=0)
 
+        # renew a and b
         for iter_step in range(amount_step):
             xi = train_input_x_step[iter_step, :]
             yi = train_input_y_step[iter_step]
-            gi = yi * ((xi).dot(a.T) + b)
+            gi = yi * ((a).dot(xi) + b)
 
             if (gi >= 1):
                 a = a - step_length * regularizer * a
@@ -45,7 +46,16 @@ def stochasticGradientDescent(train_input_x, train_input_y, regularizer, train_s
                 a = a - step_length * (regularizer * a - yi * xi)
                 b = b + step_length * yi
 
+    # predict label of validation set
+    correct_amount = 0
+    for iter_y in range(amount_validation):
+        if train_input_y_validation[iter_y] * ((a).dot(train_input_x_validation[iter_y, :]) + b) > 0:
+            correct_amount = correct_amount + 1
 
+    # calculate accuracy
+    accuracy_validation = correct_amount / amount_validation
+
+    print(accuracy_validation)
     return a, b
 
 # output result in csv file
@@ -87,13 +97,15 @@ if __name__ == "__main__":
     train_input_x = train_input_data[:, index_x]
     train_input_x = np.array(train_input_x)
 
+    # classify training labels
     train_input_y = train_input_data[:, train_feature_amount-1]
     for iter_y in range(0, train_sample_amount):
-        if train_input_y[iter_y] == ' <=50K':
+        if train_input_y[iter_y] == ' <=50K':   # <=50K
             train_input_y[iter_y] = -1
-        else:
+        else:                                   # >50K
             train_input_y[iter_y] = 1
     train_input_y = np.array(train_input_y).astype(int)
+
 
     ## READ IN TESTING DATA
     with open("./Data/test.data", "r") as test_input_file:
@@ -119,18 +131,18 @@ if __name__ == "__main__":
     test_input_x_rescaled = preprocessing.scale(test_input_x, axis=0, with_mean=True, with_std=True)
     np.array(test_input_x_rescaled).astype(float)
 
-    print(train_input_x_rescaled.shape)
 
-    [a, b] = stochasticGradientDescent(train_input_x_rescaled, train_input_y, 0.001, train_sample_amount)
+    ## TEST
+    for regularizer in [0.001, 0.01, 0.1, 1]:
+        [a, b] = stochasticGradientDescent(train_input_x_rescaled, train_input_y, regularizer, train_sample_amount)
+
 
     test_output_y = []
     for iter_y in range(test_sample_amount):
-        if (test_input_x_rescaled[iter_y, :]).dot(a.T) + b > 0:
+        if (a).dot(test_input_x_rescaled[iter_y, :]) + b > 0:
             test_output_y.append('>50K')
-            print("OMG")
         else:
             test_output_y.append('<=50K')
-            print("FUCK")
 
     test_output_y = np.array(test_output_y)
 
