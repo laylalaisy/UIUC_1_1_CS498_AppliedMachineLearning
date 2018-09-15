@@ -1,10 +1,11 @@
 import csv
 from sklearn import preprocessing
 import numpy as np
+from matplotlib import pyplot as plt
 
 index_x = [0, 2, 4, 10, 11, 12]
 feature_amount = 6
-
+train_regularizer = [0.001, 0.01, 0.1, 1]
 
 def stochasticGradientDescent(train_input_x, train_input_y, regularizer, train_sample_amount):
 
@@ -156,7 +157,7 @@ if __name__ == "__main__":
     best_regularizer = 0
     accuray = []
     magnitude = []
-    for regularizer in [0.001, 0.01, 0.1, 1]:
+    for regularizer in train_regularizer:
         [current_a, current_b, current_accuracy, list_accuracy, list_magnitude] = stochasticGradientDescent(train_input_x_rescaled, train_input_y, regularizer, train_sample_amount)
         if current_accuracy > best_accuracy:
             best_a = current_a
@@ -166,6 +167,7 @@ if __name__ == "__main__":
 
         accuray.append(list_accuracy)
         magnitude.append(list_magnitude)
+    print("best regularizer:", best_regularizer)
 
 
     ## TEST
@@ -175,7 +177,37 @@ if __name__ == "__main__":
             test_output_y.append('>50K')
         else:
             test_output_y.append('<=50K')
-
     test_output_y = np.array(test_output_y)
-
     writeCsvFile("hw2.csv", test_output_y)
+
+
+    ## DRAW
+    image_a = plt.figure()
+    for iter in range(len(train_regularizer)):
+        y = accuray[iter]
+        x = np.arange(len(y))
+
+        image_accuracy = image_a.add_subplot(111)
+        image_accuracy.plot(x, y)
+
+    image_accuracy.legend(train_regularizer)
+    image_accuracy.set_xlabel('Steps')
+    image_accuracy.set_ylabel('Accuracy')
+
+    image_a.savefig('accuracy.png')
+    image_a.show()
+
+    image_m = plt.figure()
+    for iter in range(len(train_regularizer)):
+        y = magnitude[iter]
+        x = np.arange(len(y))
+
+        image_magnitude = image_m.add_subplot(111)
+        image_magnitude.plot(x, y)
+
+    image_magnitude.legend(train_regularizer)
+    image_magnitude.set_xlabel('Steps')
+    image_magnitude.set_ylabel('Magnitude')
+
+    image_m.savefig('magnitude.png')
+    image_m.show()

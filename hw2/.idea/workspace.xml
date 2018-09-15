@@ -2,8 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3be496f2-a4e7-4139-8b82-d71eb5d91926" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/demo.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/hw2.py" beforeDir="false" afterPath="$PROJECT_DIR$/hw2.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hw2.csv" beforeDir="false" afterPath="$PROJECT_DIR$/hw2.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/hw2.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/shuyuel2_hw2.csv" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,24 +13,25 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/hw2$hw2.coverage" NAME="hw2 Coverage Results" MODIFIED="1536990128104" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hw2$hw2.coverage" NAME="hw2 Coverage Results" MODIFIED="1536991650890" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-392362458">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.opened" value="1" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="7045" />
+          <entry key="py" value="7580" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="7045" />
+          <entry key="Python" value="7580" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -47,23 +49,10 @@
   <component name="FileEditorManager">
     <leaf>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hw2.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="575">
-              <caret line="62" column="31" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
-              <folding>
-                <element signature="e#0#10#0" expanded="true" />
-                <marker date="1536990023341" expanded="true" signature="212:3345" ph="..." />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$USER_HOME$/anaconda3/envs/cs498/lib/python3.6/site-packages/sklearn/preprocessing/data.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-3135">
-              <caret line="469" column="45" selection-start-line="469" selection-start-column="45" selection-end-line="469" selection-end-column="45" />
+            <state relative-caret-position="62">
+              <caret line="626" column="41" lean-forward="true" selection-start-line="626" selection-start-column="41" selection-end-line="626" selection-end-column="41" />
             </state>
           </provider>
         </entry>
@@ -186,7 +175,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="65" y="-4" width="1513" height="1287" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.50058895" side_tool="true" weight="0.091874234" />
       <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49880096" weight="0.0" />
@@ -199,13 +187,13 @@
       <window_info anchor="bottom" id="Python Console" order="5" weight="0.32260796" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Find" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.49927744" visible="true" weight="0.24503882" />
+      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.49927744" weight="0.24503882" />
       <window_info anchor="bottom" id="Debug" order="9" sideWeight="0.49979582" weight="0.3986195" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="12" sideWeight="0.4993875" weight="0.32938188" />
       <window_info anchor="right" x="1138" y="250" width="349" height="800" id="Documentation" order="0" side_tool="true" type="WINDOWED" weight="0.14250715" />
-      <window_info anchor="right" id="SciView" order="1" visible="true" weight="0.12338105" />
+      <window_info anchor="right" id="SciView" order="1" weight="0.858214" />
       <window_info anchor="right" id="Database" order="2" weight="0.32993057" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="3" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="4" weight="0.25" />
@@ -242,33 +230,21 @@
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/hw2.py</url>
-          <line>26</line>
-          <option name="timeStamp" value="3" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
-  </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/anaconda3/envs/cs498/lib/python3.6/site-packages/sklearn/preprocessing/data.py">
+    <entry file="file://$PROJECT_DIR$/hw2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-3135">
-          <caret line="469" column="45" selection-start-line="469" selection-start-column="45" selection-end-line="469" selection-end-column="45" />
+        <state relative-caret-position="499">
+          <caret line="204" column="33" selection-start-line="204" selection-start-column="33" selection-end-line="204" selection-end-column="33" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/hw2.py">
+    <entry file="file://$USER_HOME$/anaconda3/envs/cs498/lib/python3.6/site-packages/sklearn/preprocessing/data.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="575">
-          <caret line="62" column="31" selection-start-line="62" selection-start-column="31" selection-end-line="62" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-            <marker date="1536990023341" expanded="true" signature="212:3345" ph="..." />
-          </folding>
+        <state relative-caret-position="62">
+          <caret line="626" column="41" lean-forward="true" selection-start-line="626" selection-start-column="41" selection-end-line="626" selection-end-column="41" />
         </state>
       </provider>
     </entry>
