@@ -2,18 +2,63 @@ import csv
 from sklearn import preprocessing
 import numpy as np
 
-def stochasticGradientDescent(trainX, trainY, validationX, validationY, regularizer, step_length):
-    [train_sample_amount, train_feature_amount] = trainX.shape
+def stochasticGradientDescent(train_input_x, train_input_y, regularizer):
+    [train_sample_amount, train_feature_amount] = train_input_x.shape
 
     ## INITIALIZE a AND b
     a = np.ones([train_feature_amount], dtype=float)
     b = 1.00
 
     # GRADIENT DESCENT
-    for iter_step in range(train_sample_amount):
-        predictY = ((a.T).dot(trainX[iter_step, :]) + b)
-        gi = max(0, 1- trainY[iter_step] * predictY)
-        print(gi)
+    ## TRAIN
+    amount_epoch = 50
+    amount_step = 300
+    amount_validation = 50
+    for iter_epoch in range(amount_epoch):
+        # step_length
+        step_length = 1.0 / ((0.01 * iter_epoch) + 50)
+
+        # data of the whole epoch
+        index_epoch = np.random.choice(train_sample_amount, size=amount_step + amount_validation, replace=False)
+        train_input_x_epoch = train_input_x[index_epoch, :]
+        train_input_y_epoch = train_input_y[index_epoch]
+
+        # training data and validation data
+        index_step = np.random.choice(train_input_x_epoch.shape[0], size=amount_step, replace=False)
+        train_input_x_step = train_input_x_epoch[index_step, :]
+        train_input_y_step = train_input_y_epoch[index_step]
+        train_input_x__validation = np.delete(train_input_x_epoch, index_step, axis=0)
+        train_input_y__validation = np.delete(train_input_y_epoch, index_step, axis=0)
+
+        for iter_step in range(train_sample_amount):
+            predictY = ((a.T).dot(train_input_x[iter_step, :]) + b)
+            gi = max(0, 1 - train_input_y[iter_step] * predictY)
+
+            if (gi >= 1):
+                a = a - step_length * regularizer * a
+            else:
+                a = a - step_length * (regularizer * a - train_input_y[iter_step] * train_input_x[iter_step, :])
+
+
+    return a, b
+
+# output result in csv file
+def writeCsvFile(filename, test_output_y):
+    with open(filename, "w") as test_output_file:
+        test_output_writer = csv.writer(test_output_file)
+
+        # write header
+        fileHeader = ["Example", "Label"]
+        test_output_writer.writerow(fileHeader)
+
+        # write content
+        test_sample_amount = test_output_y.shape[0]
+        content = []
+        for iter in range(test_sample_amount):
+            string_index = "'" + str(iter) + "'"
+            content.append([string_index, test_output_y[iter]])
+        test_output_writer.writerows(content)
+
 
 if __name__ == "__main__":
 
@@ -61,6 +106,7 @@ if __name__ == "__main__":
 
     # change input data from list to array
     test_input_data = np.array(test_input_data_list)
+    [test_sample_amount, test_feature_amount] = test_input_data.shape
 
     # extract data of feature
     test_input_x = test_input_data[:, index_x]
@@ -73,25 +119,16 @@ if __name__ == "__main__":
     train_input_x_rescaled = preprocessing.StandardScaler(train_input_x[:, 1:train_feature_amount-2], with_mean=True, with_std=True)
     test_input_x_rescaled = preprocessing.StandardScaler(test_input_x[:, 1:], with_mean=True, with_std=True)
 
+    [a,b] = stochasticGradientDescent(train_input_x, train_input_y, 1)
 
-    ## TRAIN
-    amount_epoch = 1
-    amount_step = 300
-    amount_validation = 50
-    for iter_epoch in range(amount_epoch):
-        # data of the whole epoch
-        index_epoch = np.random.choice(train_sample_amount, size=amount_step + amount_validation, replace=False)
-        train_input_x_epoch = train_input_x[index_epoch, :]
-        train_input_y_epoch = train_input_y[index_epoch]
 
-        # training data and validation data
-        index_step = np.random.choice(train_input_x_epoch.shape[0], size=amount_step, replace=False)
-        train_input_x_step = train_input_x_epoch[index_step, :]
-        train_input_y_step = train_input_y_epoch[index_step]
-        train_input_x__validation = np.delete(train_input_x_epoch, index_step, axis=0)
-        train_input_y__validation = np.delete(train_input_y_epoch, index_step, axis=0)
+    test_output_y = []
+    for iter_y in range(test_sample_amount):
+        if (a.T).dot(test_input_x[iter_y, :]) + b >0:
+            test_output_y.append('>50K')
+        else:
+            test_output_y.append('=<50K')
 
-        # step_length
-        step_length = 1.0 / ((0.01 * iter_epoch) + 50)
-        stochasticGradientDescent(train_input_x_step, train_input_y_step, train_input_x__validation, train_input_y__validation, 1, step_length)
+    test_output_y = np.array(test_output_y)
 
+    writeCsvFile("demo.csv", test_output_y)
