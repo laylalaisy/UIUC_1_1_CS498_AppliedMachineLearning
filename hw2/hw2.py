@@ -2,18 +2,22 @@ import csv
 from sklearn import preprocessing
 import numpy as np
 
-def stochasticGradientDescent(train_input_x, train_input_y, regularizer):
-    [train_sample_amount, train_feature_amount] = train_input_x.shape
+index_x = [0, 2, 4, 10, 11, 12]
+feature_amount = 6
+
+
+def stochasticGradientDescent(train_input_x, train_input_y, regularizer, train_sample_amount):
 
     ## INITIALIZE a AND b
-    a = np.ones([train_feature_amount], dtype=float)
+    a = np.matrix('1,1,1,1,1,1')
     b = 1.00
 
     # GRADIENT DESCENT
     ## TRAIN
-    amount_epoch = 50
+    amount_epoch = 500
     amount_step = 300
     amount_validation = 50
+
     for iter_epoch in range(amount_epoch):
         # step_length
         step_length = 1.0 / ((0.01 * iter_epoch) + 50)
@@ -30,14 +34,16 @@ def stochasticGradientDescent(train_input_x, train_input_y, regularizer):
         train_input_x__validation = np.delete(train_input_x_epoch, index_step, axis=0)
         train_input_y__validation = np.delete(train_input_y_epoch, index_step, axis=0)
 
-        for iter_step in range(train_sample_amount):
-            predictY = ((a.T).dot(train_input_x[iter_step, :]) + b)
-            gi = max(0, 1 - train_input_y[iter_step] * predictY)
+        for iter_step in range(amount_step):
+            xi = train_input_x_step[iter_step, :]
+            yi = train_input_y_step[iter_step]
+            gi = yi * ((xi).dot(a.T) + b)
 
             if (gi >= 1):
                 a = a - step_length * regularizer * a
             else:
-                a = a - step_length * (regularizer * a - train_input_y[iter_step] * train_input_x[iter_step, :])
+                a = a - step_length * (regularizer * a - yi * xi)
+                b = b + step_length * yi
 
 
     return a, b
@@ -62,8 +68,6 @@ def writeCsvFile(filename, test_output_y):
 
 if __name__ == "__main__":
 
-    index_x = [0, 2, 4, 10, 11, 12]
-
     ## READ IN TRAINING DATA
     with open("./Data/train.data", "r") as train_input_file:
         train_input_reader = csv.reader(train_input_file)
@@ -76,17 +80,12 @@ if __name__ == "__main__":
     train_input_data = np.array(train_input_data_list)
 
     # get training data set size
-    [train_sample_amount, train_feature_amount] = train_input_data.shape
-
-    # label_encoder = preprocessing.LabelEncoder()
-    # for iter in range(1, train_feature_amount):
-    #     label_encoder.fit(train_input_data[:, iter])
-    #     train_input_data[:, iter] = label_encoder.transform(train_input_data[:, iter])
-    # print(train_input_data)
+    train_sample_amount = train_input_data.shape[0]
+    train_feature_amount = train_input_data.shape[1]
 
     # extract data of feature and label
     train_input_x = train_input_data[:, index_x]
-    train_input_x = np.array(train_input_x).astype(float)
+    train_input_x = np.array(train_input_x)
 
     train_input_y = train_input_data[:, train_feature_amount-1]
     for iter_y in range(0, train_sample_amount):
@@ -106,28 +105,32 @@ if __name__ == "__main__":
 
     # change input data from list to array
     test_input_data = np.array(test_input_data_list)
-    [test_sample_amount, test_feature_amount] = test_input_data.shape
+    test_sample_amount = test_input_data.shape[0]
 
     # extract data of feature
     test_input_x = test_input_data[:, index_x]
-    test_input_x = np.array(test_input_x).astype(float)
 
 
     ## RESCALE
     # Scale these variables so that each has unit variance
     # And subtract the mean so that each has zero mean
-    train_input_x_rescaled = preprocessing.StandardScaler(train_input_x[:, 1:train_feature_amount-2], with_mean=True, with_std=True)
-    test_input_x_rescaled = preprocessing.StandardScaler(test_input_x[:, 1:], with_mean=True, with_std=True)
+    train_input_x_rescaled = preprocessing.scale(train_input_x, axis=0, with_mean=True, with_std=True)
+    np.array(train_input_x_rescaled).astype(float)
+    test_input_x_rescaled = preprocessing.scale(test_input_x, axis=0, with_mean=True, with_std=True)
+    np.array(test_input_x_rescaled).astype(float)
 
-    [a,b] = stochasticGradientDescent(train_input_x, train_input_y, 1)
+    print(train_input_x_rescaled.shape)
 
+    [a, b] = stochasticGradientDescent(train_input_x_rescaled, train_input_y, 0.001, train_sample_amount)
 
     test_output_y = []
     for iter_y in range(test_sample_amount):
-        if (a.T).dot(test_input_x[iter_y, :]) + b >0:
+        if (test_input_x_rescaled[iter_y, :]).dot(a.T) + b > 0:
             test_output_y.append('>50K')
+            print("OMG")
         else:
-            test_output_y.append('=<50K')
+            test_output_y.append('<=50K')
+            print("FUCK")
 
     test_output_y = np.array(test_output_y)
 
