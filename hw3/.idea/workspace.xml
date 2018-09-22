@@ -11,7 +11,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/hw3$hw3.coverage" NAME="hw3 Coverage Results" MODIFIED="1537640805381" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hw3$hw3.coverage" NAME="hw3 Coverage Results" MODIFIED="1537643705532" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-588875962">
@@ -35,12 +35,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="3466" />
+          <entry key="py" value="3838" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="3466" />
+          <entry key="Python" value="3838" />
         </counts>
       </usages-collector>
     </session>
@@ -50,12 +50,12 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hw3.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="132" column="14" lean-forward="true" selection-start-line="132" selection-start-column="14" selection-end-line="132" selection-end-column="14" />
+            <state relative-caret-position="144">
+              <caret line="135" column="22" lean-forward="true" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
-                <marker date="1537640801822" expanded="true" signature="344:382" ph="..." />
-                <marker date="1537640801822" expanded="true" signature="1123:1323" ph="..." />
+                <marker date="1537643705521" expanded="true" signature="344:382" ph="..." />
+                <marker date="1537643705521" expanded="true" signature="1123:1323" ph="..." />
               </folding>
             </state>
           </provider>
@@ -204,18 +204,18 @@
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.50058895" side_tool="true" weight="0.091874234" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49618322" visible="true" weight="0.050688706" />
-      <window_info id="Structure" order="2" sideWeight="0.5038168" side_tool="true" visible="true" weight="0.050688706" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49675745" visible="true" weight="0.050688706" />
+      <window_info id="Structure" order="2" sideWeight="0.50324255" side_tool="true" visible="true" weight="0.050688706" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32938188" />
-      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.10247934" side_tool="true" visible="true" weight="0.6609146" />
+      <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.23746556" side_tool="true" visible="true" weight="0.33477136" />
       <window_info anchor="bottom" id="Database Changes" order="3" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="4" weight="0.32938188" />
       <window_info anchor="bottom" id="Python Console" order="5" sideWeight="0.4997236" weight="0.3218249" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Find" order="7" />
-      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.76418734" weight="0.6557377" />
-      <window_info active="true" anchor="bottom" id="Debug" order="9" sideWeight="0.89752066" visible="true" weight="0.6609146" />
+      <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.76253444" visible="true" weight="0.33477136" />
+      <window_info anchor="bottom" id="Debug" order="9" sideWeight="0.89641875" weight="0.4667817" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="12" sideWeight="0.4993875" weight="0.32938188" />
@@ -239,7 +239,7 @@
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/hw3.py</url>
           <line>130</line>
-          <option name="timeStamp" value="5" />
+          <option name="timeStamp" value="6" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -257,12 +257,12 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/hw3.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="132" column="14" lean-forward="true" selection-start-line="132" selection-start-column="14" selection-end-line="132" selection-end-column="14" />
+        <state relative-caret-position="144">
+          <caret line="135" column="22" lean-forward="true" selection-start-line="135" selection-start-column="22" selection-end-line="135" selection-end-column="22" />
           <folding>
             <element signature="e#0#10#0" expanded="true" />
-            <marker date="1537640801822" expanded="true" signature="344:382" ph="..." />
-            <marker date="1537640801822" expanded="true" signature="1123:1323" ph="..." />
+            <marker date="1537643705521" expanded="true" signature="344:382" ph="..." />
+            <marker date="1537643705521" expanded="true" signature="1123:1323" ph="..." />
           </folding>
         </state>
       </provider>

@@ -130,52 +130,32 @@ if __name__ == '__main__':
     # mse
     mse.append(mse_V)
 
-    print(mse)
+    # WRITE dataII
+    with open("shuyuel2-recon.csv", "w") as output_file:
+        output_writer = csv.writer(output_file)
+        # write header
+        fileHeader = ["Sepal.Length", "Sepal.Width", "Petal.Length", "Petal.Width"]
+        output_writer.writerow(fileHeader)
+        # write content
+        output_writer.writerows(dataII_c_reconstructions[2])
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-    # # dataI
-    # # READ IN DATA
-    # dataI_in = readInData("./Data/dataI.csv")
-    #
-    # # NORMALIZATION
-    # dataI_mean = np.mean(dataI_in, axis=0)
-    # dataI_std = np.std(dataI_in, axis=0)
-    # dataI_mean_repeat = np.tile(dataI_mean, [samples, 1])
-    # dataI_std_repeat = np.tile(dataI_std, [samples, 1])
-    # dataI_norm = (dataI_in - dataI_mean_repeat) # / dataI_std_repeat
-    #
-    # # COVARIANCE
-    # # dataI_cov = np.zeros([dims, dims])
-    # # for row in range(dims):
-    # #     for col in range(dims):
-    # #         dataI_cov[row][col] = dataI_cov[col][row] = np.cov(dataI_norm[:, row], dataI_norm[:, col])[0][1]
-    # dataI_cov = np.cov(dataI_norm, rowvar=0)
-    #
-    #
-    # # EIGENVALUE, EIGENVECTOR
-    # dataI_eigval, dataI_eigvec = np.linalg.eig(dataI_cov)
-    #
-    # # REDUCE DIMENSION AND RECONSTRUCTION
-    # dataI_reconstructions = []
-    # for dim in range(dims+1):
-    #     dataI_feature = dataI_eigvec[:, :dim].reshape(dims, dim)
-    #     dataI_reduce = np.dot(dataI_norm, dataI_feature).reshape(samples, dim)
-    #     dataI_reconstruction = np.dot(dataI_reduce, dataI_feature.T) + dataI_mean_repeat
-    #     dataI_reconstructions.append(dataI_reconstruction)
-
+    # WRITE MSE
+    with open("shuyuel2-numbers.csv", "w") as output_file:
+        output_writer = csv.writer(output_file)
+        # write header
+        fileHeader = ["0N", "1N", "2N", "3N", "4N", "0c", "1c", "2c", "3c", "4c"]
+        output_writer.writerow(fileHeader)
+        # write content
+        content = []
+        for dim in range(dims+1):
+            temp = []
+            for iter in range(dims+1):
+                temp.append(mse[dim][0][iter])
+            for iter in range(dims+1):
+                temp.append(mse[dim][1][iter])
+            content.append(temp)
+        output_writer.writerows(content)
 
 
 
