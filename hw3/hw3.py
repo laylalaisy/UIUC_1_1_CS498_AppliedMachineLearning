@@ -18,16 +18,22 @@ def readInData(filename):
 def getMean(data_in):
     return np.mean(data_in, axis=0)
 
-def reconstruct(data_in, data_mean):
+def reconstruct(data_in, data_mean, iris_cov, useNoiseless):
     # NORMALIZATION
     data_mean_repeat = np.tile(data_mean, [samples, 1])
     data_norm = (data_in - data_mean_repeat)
 
     # COVARIANCE
-    data_cov = np.cov(data_norm, rowvar=0)
+    if(useNoiseless == False):      # c
+        data_cov = np.cov(data_norm, rowvar=0)
+    else:                           # n
+        data_cov = iris_cov
 
     # EIGENVALUE, EIGENVECTOR
     data_eigval, data_eigvec = np.linalg.eig(data_cov)
+    index = data_eigval.argsort()[::-1]
+    data_eigval = data_eigval[index]
+    data_eigvec = data_eigvec[:, index]
 
     # REDUCE DIMENSION AND RECONSTRUCTION
     data_reconstructions = []
@@ -43,8 +49,7 @@ def MSE(x1, x2):
     mse = []
     for dim in range(dims+1):
         square = pow((x1[dim] - x2), 2)
-        sum = np.sum(square, axis=1)
-        mean = round(np.mean(sum), 3)
+        mean = np.sum(square)/samples
         mse.append(mean)
     return mse
 
@@ -54,17 +59,20 @@ if __name__ == '__main__':
     # iris
     iris_in = readInData('./Data/iris.csv')
     iris_mean = getMean(iris_in)
+    iris_mean_repeat = np.tile(iris_mean, [samples, 1])
+    iris_norm = (iris_in - iris_mean_repeat)
+    iris_cov = np.cov(iris_norm, rowvar=0)
 
     # dataI
     mse_I = []
     dataI_in = readInData('./Data/dataI.csv')
     dataI_mean = getMean(dataI_in)
     # dataI + n
-    dataI_n_reconstructions = reconstruct(dataI_in, iris_mean)
+    dataI_n_reconstructions = reconstruct(dataI_in, iris_mean, iris_cov, True)
     dataI_n_mse = MSE(dataI_n_reconstructions, iris_in)
     mse_I.append(dataI_n_mse)
     # dataI + c
-    dataI_c_reconstructions = reconstruct(dataI_in, dataI_mean)
+    dataI_c_reconstructions = reconstruct(dataI_in, dataI_mean, iris_cov, False)
     dataI_c_mse = MSE(dataI_c_reconstructions, iris_in)
     mse_I.append(dataI_c_mse)
     # mse
@@ -75,11 +83,11 @@ if __name__ == '__main__':
     dataII_in = readInData('./Data/dataII.csv')
     dataII_mean = getMean(dataII_in)
     # dataII + n
-    dataII_n_reconstructions = reconstruct(dataII_in, iris_mean)
+    dataII_n_reconstructions = reconstruct(dataII_in, iris_mean, iris_cov, True)
     dataII_n_mse = MSE(dataII_n_reconstructions, iris_in)
     mse_II.append(dataII_n_mse)
     # dataII + c
-    dataII_c_reconstructions = reconstruct(dataII_in, dataII_mean)
+    dataII_c_reconstructions = reconstruct(dataII_in, dataII_mean, iris_cov, False)
     dataII_c_mse = MSE(dataII_c_reconstructions, iris_in)
     mse_II.append(dataII_c_mse)
     # mse
@@ -90,11 +98,11 @@ if __name__ == '__main__':
     dataIII_in = readInData('./Data/dataIII.csv')
     dataIII_mean = getMean(dataIII_in)
     # dataIII + n
-    dataIII_n_reconstructions = reconstruct(dataIII_in, iris_mean)
+    dataIII_n_reconstructions = reconstruct(dataIII_in, iris_mean, iris_cov, True)
     dataIII_n_mse = MSE(dataIII_n_reconstructions, iris_in)
     mse_III.append(dataIII_n_mse)
     # dataIII + c
-    dataIII_c_reconstructions = reconstruct(dataIII_in, dataIII_mean)
+    dataIII_c_reconstructions = reconstruct(dataIII_in, dataIII_mean, iris_cov, False)
     dataIII_c_mse = MSE(dataIII_c_reconstructions, iris_in)
     mse_III.append(dataIII_c_mse)
     # mse
@@ -105,11 +113,11 @@ if __name__ == '__main__':
     dataIV_in = readInData('./Data/dataIV.csv')
     dataIV_mean = getMean(dataIV_in)
     # dataIV + n
-    dataIV_n_reconstructions = reconstruct(dataIV_in, iris_mean)
+    dataIV_n_reconstructions = reconstruct(dataIV_in, iris_mean, iris_cov, True)
     dataIV_n_mse = MSE(dataIV_n_reconstructions, iris_in)
     mse_IV.append(dataIV_n_mse)
     # dataIV + c
-    dataIV_c_reconstructions = reconstruct(dataIV_in, dataI_mean)
+    dataIV_c_reconstructions = reconstruct(dataIV_in, dataIV_mean, iris_cov, False)
     dataIV_c_mse = MSE(dataIV_c_reconstructions, iris_in)
     mse_IV.append(dataIV_c_mse)
     # mse
@@ -120,11 +128,11 @@ if __name__ == '__main__':
     dataV_in = readInData('./Data/dataV.csv')
     dataV_mean = getMean(dataV_in)
     # dataV + n
-    dataV_n_reconstructions = reconstruct(dataV_in, iris_mean)
+    dataV_n_reconstructions = reconstruct(dataV_in, iris_mean, iris_cov, True)
     dataV_n_mse = MSE(dataV_n_reconstructions, iris_in)
     mse_V.append(dataV_n_mse)
     # dataV + c
-    dataV_c_reconstructions = reconstruct(dataV_in, dataI_mean)
+    dataV_c_reconstructions = reconstruct(dataV_in, dataV_mean, iris_cov, False)
     dataV_c_mse = MSE(dataV_c_reconstructions, iris_in)
     mse_V.append(dataV_c_mse)
     # mse
@@ -138,7 +146,6 @@ if __name__ == '__main__':
         output_writer.writerow(fileHeader)
         # write content
         output_writer.writerows(dataII_c_reconstructions[2])
-
 
     # WRITE MSE
     with open("shuyuel2-numbers.csv", "w") as output_file:
@@ -156,8 +163,3 @@ if __name__ == '__main__':
                 temp.append(mse[dim][1][iter])
             content.append(temp)
         output_writer.writerows(content)
-
-
-
-
-
