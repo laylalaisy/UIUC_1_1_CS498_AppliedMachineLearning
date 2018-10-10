@@ -2,13 +2,16 @@ import os
 import numpy as np
 import scipy as sp
 from sklearn import cluster
+from sklearn.model_selection import train_test_split
 import matplotlib.pyplot as plt
+
+act_num = 14
 
 def readData(path1):
     folders = os.listdir(path1)
 
     activities = []
-    for i in range(len(folders)):
+    for i in range(act_num):
         activity = []
         path2 = "" + path1 + "/" + folders[i]
         files = os.listdir(path2)
@@ -28,12 +31,24 @@ def readData(path1):
         activities.append(activity)
     activities = np.array(activities)
 
-    print(activities[0])
+    return folders, activities
 
+def split(act_data, percent, segment_size):
+    for i in range(act_num):
+        length = act_data[i].shape[0]
+        print(length)
+
+
+
+def execute(act_data, segment_size=32, cluster_size=40*12, percent=0.9, matrix_output=True):
+    #act_train, act_test =
+    split(act_data, percent, segment_size)
 
 
 if __name__ == "__main__":
-    readData('./HMP_Dataset')
+    act_name, act_data = readData('./HMP_Dataset')
+
+    execute(act_data, segment_size=32, cluster_size=40*12, percent=0.9, matrix_output=True)
 
 
 
