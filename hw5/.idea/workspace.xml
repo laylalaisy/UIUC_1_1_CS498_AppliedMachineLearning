@@ -12,7 +12,7 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/hw5$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1539119509817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/hw5$hw5.coverage" NAME="hw5 Coverage Results" MODIFIED="1539192297819" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hw5$hw5.coverage" NAME="hw5 Coverage Results" MODIFIED="1539215431086" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-981902994">
@@ -35,12 +35,12 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="4284" />
+          <entry key="py" value="4572" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="4284" />
+          <entry key="Python" value="4572" />
         </counts>
       </usages-collector>
     </session>
@@ -50,15 +50,15 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/hw5.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="483">
-              <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
+            <state relative-caret-position="437">
+              <caret line="82" column="16" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <marker date="1539192290672" expanded="true" signature="1394:1399" ph="..." />
-                <marker date="1539192290672" expanded="true" signature="1446:1451" ph="..." />
-                <marker date="1539192290672" expanded="true" signature="1446:2533" ph="..." />
-                <marker date="1539192290672" expanded="true" signature="2625:2630" ph="..." />
-                <marker date="1539192290672" expanded="true" signature="2625:2693" ph="..." />
+                <marker date="1539215103168" expanded="true" signature="1401:1406" ph="..." />
+                <marker date="1539215103168" expanded="true" signature="1453:1458" ph="..." />
+                <marker date="1539215103168" expanded="true" signature="1453:2634" ph="..." />
+                <marker date="1539215103168" expanded="true" signature="2708:2713" ph="..." />
+                <marker date="1539215103168" expanded="true" signature="2708:2962" ph="..." />
               </folding>
             </state>
           </provider>
@@ -233,15 +233,15 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/hw5.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="483">
-          <caret line="74" column="4" selection-start-line="74" selection-start-column="4" selection-end-line="74" selection-end-column="4" />
+        <state relative-caret-position="437">
+          <caret line="82" column="16" selection-start-line="82" selection-start-column="16" selection-end-line="82" selection-end-column="16" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
-            <marker date="1539192290672" expanded="true" signature="1394:1399" ph="..." />
-            <marker date="1539192290672" expanded="true" signature="1446:1451" ph="..." />
-            <marker date="1539192290672" expanded="true" signature="1446:2533" ph="..." />
-            <marker date="1539192290672" expanded="true" signature="2625:2630" ph="..." />
-            <marker date="1539192290672" expanded="true" signature="2625:2693" ph="..." />
+            <marker date="1539215103168" expanded="true" signature="1401:1406" ph="..." />
+            <marker date="1539215103168" expanded="true" signature="1453:1458" ph="..." />
+            <marker date="1539215103168" expanded="true" signature="1453:2634" ph="..." />
+            <marker date="1539215103168" expanded="true" signature="2708:2713" ph="..." />
+            <marker date="1539215103168" expanded="true" signature="2708:2962" ph="..." />
           </folding>
         </state>
       </provider>
