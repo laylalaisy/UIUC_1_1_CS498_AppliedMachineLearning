@@ -46,28 +46,33 @@ def split(act_data, percent, segment_size):
     test_activities = []
 
     for i in range(act_num): # each activity
-        activity = []
-        train_activity = []
-        test_activity = []
-        for j in range(act_data[i].shape[0]):   # traverse each file
-            cur_file = act_data[i][j]           # current file's data
-            length = cur_file.shape[0]          # number of samples in current file
+        for j in range(act_data[i].shape[0]):           # traverse each file
+            activity = []                               # data of activity after flatten
+
+            cur_file = act_data[i][j]                   # current file's data
+            length = cur_file.shape[0]                  # number of samples in current file
             segment_num = math.floor(length/32)         # number of segment
             for k in range(segment_num):
                 activity.append(cur_file[k*segment_size:(k+1)*segment_size].T.flatten()[:97])
             activity = np.array(activity)
-            print(activity)
-            return
 
+            train_num = math.floor(segment_num*percent)
+            test_index = train_num
 
+            for m in range(train_num):
+                train_activities.append(activity[m])
 
+            for n in range(test_index, segment_num):
+                test_activities.append(activity[n])
 
+    train_activities = np.array(train_activities)
+    test_activities = np.array(test_activities)
+    return(train_activities.shape, test_activities.shape)
 
 
 
 def execute(act_data, segment_size=32, cluster_size=40*12, percent=0.9, matrix_output=True):
-    #act_train, act_test =
-    split(act_data, percent, segment_size)
+    act_train, act_test = split(act_data, percent, segment_size)
 
 
 if __name__ == "__main__":
