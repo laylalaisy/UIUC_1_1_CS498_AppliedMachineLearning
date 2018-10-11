@@ -53,16 +53,12 @@ def splitData(act_data, percent, segment_size):
         train_num = file_num-test_num                   # number of train files/signals
 
         for j in range(train_num):                      # traverse each train file
-            train_activity = []
             cur_file = act_data[i][j]                   # current file's data
             length = cur_file.shape[0]                  # number of samples in current file
             segment_num = math.floor(length/32)         # number of segment
 
             for k in range(segment_num):                # build up segment
-                train_activity.append(cur_file[k*segment_size:(k+1)*segment_size].T.flatten()[:97])
-                activities.append(cur_file[k*segment_size:(k+1)*segment_size].T.flatten()[:97])
-            train_activity = np.array(train_activity)
-            train_activities.append(train_activity)
+                train_activities.append(cur_file[k*segment_size:(k+1)*segment_size].T.flatten()[:97])
 
         for j in range(train_num, train_num+test_num):                      # traverse each train file
             test_activity = []
@@ -74,36 +70,27 @@ def splitData(act_data, percent, segment_size):
                 test_activity.append(cur_file[k*segment_size:(k+1)*segment_size].T.flatten()[:97])
             test_activity = np.array(test_activity)
             test_activities.append(test_activity)
-    activities = np.array(activities)
+
     train_activities = np.array(train_activities)
     test_activities = np.array(test_activities)
 
-    return activities, train_activities, test_activities
+    return train_activities, test_activities
 
 def createTrainHistogram(data, cluster_size, centers, labels):
+    count = np.zeros([act_num, cluster_size])
     length = data.shape[0]
-    index = 0
-
-
-    histograms = []
-    signals = []
-    for i in range(length):
-        signal = data[i][0, 96]
-        signals.append(signal)
-        count = np.zeros(cluster_size)
-        for j in range(data[i].shape[0]):
-            label = labels[index]
-            count[label] = count[label] + 1
-        histograms.append(count)
-    histograms = np.array(histograms)
-    signals = np.array(signals)
 
     for i in range(length):
-        total = np.sum(histograms[i])
+        signal = data[i][96]
+        label = labels[i]
+        count[signal][label] = count[signal][label] + 1
+
+    total = np.sum(count, axis=1)
+    for i in range(act_num):
         for j in range(cluster_size):
-            histograms[i][j] = float(histograms[i][j] / total)
+            count[i][j] = float(count[i][j] / total[i])
 
-    return histograms, signals
+    return count
 
 
 def createTestHistogram(data, cluster_size, centers, labels):
@@ -122,13 +109,13 @@ def createTestHistogram(data, cluster_size, centers, labels):
 
 
 def execute(act_data, segment_size, cluster_size, percent, matrix_output):
-    activities, act_train, act_test = splitData(act_data, percent, segment_size)
+    act_train, act_test = splitData(act_data, percent, segment_size)
 
-    kmeans = KMeans(n_clusters=cluster_size, random_state=0).fit(activities[:, :96])
+    kmeans = KMeans(n_clusters=cluster_size, random_state=0).fit(act_train[:, :96])
     train_centers = kmeans.cluster_centers_
     train_labels = kmeans.labels_
 
-    train_histogram, train_signal = createTrainHistogram(act_train, cluster_size, train_centers, train_labels)
+    train_histogram = createTrainHistogram(act_train, cluster_size, train_centers, train_labels)
 
     test_labels = []
     test_samples = act_test.shape[0]
@@ -144,7 +131,7 @@ def execute(act_data, segment_size, cluster_size, percent, matrix_output):
     for i in range(test_samples):
         test_histogram.append(createTestHistogram(act_test[i], cluster_size, train_centers, test_labels[i]))
 
-    rf = RF(max_depth=5, random_state=0).fit(train_histogram, train_signal)
+    rf = RF(max_depth=5, random_state=0).fit(train_histogram, [0,1,2,3,4,5,6,7,8,9,10,11,12,13])
 
     accurate = 0
     for i in range(test_samples):
@@ -158,7 +145,7 @@ def execute(act_data, segment_size, cluster_size, percent, matrix_output):
 if __name__ == "__main__":
     act_name, act_data = readData('./HMP_Dataset')
 
-    execute(act_data, segment_size=32, cluster_size=400, percent=0.9, matrix_output=True)
+    execute(act_data, segment_size=32, cluster_size=10, percent=0.9, matrix_output=True)
 
 
 
