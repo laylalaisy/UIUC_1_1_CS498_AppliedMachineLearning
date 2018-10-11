@@ -40,12 +40,14 @@ def readData(path1):
     activities = np.array(activities)
     return folders, activities
 
-def split(act_data, percent, segment_size):
+def splitData(act_data, percent, segment_size):
     activities = []
     train_activities = []
     test_activities = []
 
     for i in range(act_num): # each activity
+
+        test_activity = []
 
         file_num = act_data[i].shape[0]
         test_num = math.floor(file_num*(1-percent))                 # number of test files/signals
@@ -67,29 +69,51 @@ def split(act_data, percent, segment_size):
             segment_num = math.floor(length/32)         # number of segment
 
             for k in range(segment_num):                # build up segment
-                test_activities.append(cur_file[k*segment_size:(k+1)*segment_size].T.flatten()[:97])
+                test_activity.append(cur_file[k*segment_size:(k+1)*segment_size].T.flatten()[:97])
+        test_activity = np.array(test_activity)
+        test_activities.append(test_activity)
 
     train_activities = np.array(train_activities)
     test_activities = np.array(test_activities)
 
     return train_activities, test_activities
 
+def createHistogram(data, cluster_size, centers, labels):
+    count = np.zeros([act_num, cluster_size])
+    length = data.shape[0]
+
+    for i in range(length):
+        signal = data[i][96]
+        label = labels[i]
+        count[signal][label] = count[signal][label] + 1
+
+    return count
+
 
 def execute(act_data, segment_size, cluster_size, percent, matrix_output):
-    act_train, act_test = split(act_data, percent, segment_size)
+    act_train, act_test = splitData(act_data, percent, segment_size)
 
     kmeans = KMeans(n_clusters=cluster_size, random_state=0).fit(act_train[:, :96])
-    values = kmeans.cluster_centers_
-    labels = kmeans.labels_
+    train_centers = kmeans.cluster_centers_
+    train_labels = kmeans.labels_
 
-    print(values.shape, labels.shape)
+    test_labels = []
+    for i in range(act_num):
+        test_labels.append(kmeans.predict(act_test[i][:, :96]))
 
+    train_histogram = createHistogram(act_train, cluster_size, train_centers, train_labels)
+
+    test_histogram = []
+    for i in range(act_num):
+        test_histogram.append(createHistogram(act_test[i], cluster_size, train_centers, test_labels[i]))
+
+    print(test_histogram[1].shape)
 
 
 if __name__ == "__main__":
     act_name, act_data = readData('./HMP_Dataset')
 
-    execute(act_data, segment_size=32, cluster_size=40*12, percent=0.9, matrix_output=True)
+    execute(act_data, segment_size=32, cluster_size=40, percent=0.9, matrix_output=True)
 
 
 
