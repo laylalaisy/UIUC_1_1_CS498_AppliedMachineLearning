@@ -152,7 +152,7 @@ def execute(act_data, segment_size, cluster_size, percent, matrix_output):
         label_ori = act_test[i][0, 96]
         if int(label) == label_ori:
             accurate = accurate + 1
-    print(test_samples, accurate)
+    print(label, label_ori)
 
 
 if __name__ == "__main__":
