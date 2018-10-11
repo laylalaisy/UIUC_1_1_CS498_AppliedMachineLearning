@@ -1,9 +1,9 @@
 import os
 import math
 import numpy as np
-import scipy as sp
 from sklearn.cluster import KMeans
-import matplotlib.pyplot as plt
+from sklearn.ensemble import RandomForestClassifier as RF
+
 
 act_num = 14
 
@@ -85,7 +85,13 @@ def createTrainHistogram(data, cluster_size, centers, labels):
         label = labels[i]
         count[signal][label] = count[signal][label] + 1
 
+    total = np.sum(count, axis=1)
+    for i in range(act_num):
+        for j in range(cluster_size):
+            count[i][j] = float(count[i][j] / total[i])
+
     return count
+
 
 def createTestHistogram(data, cluster_size, centers, labels):
     count = np.zeros(cluster_size)
@@ -94,6 +100,10 @@ def createTestHistogram(data, cluster_size, centers, labels):
     for i in range(length):
         label = labels[i]
         count[label] = count[label] + 1
+
+    total = np.sum(count)
+    for i in range(cluster_size):
+        count[i] = float(count[i] / total)
 
     return count
 
@@ -108,20 +118,34 @@ def execute(act_data, segment_size, cluster_size, percent, matrix_output):
     train_histogram = createTrainHistogram(act_train, cluster_size, train_centers, train_labels)
 
     test_labels = []
-    for i in range(act_test.shape[0]):
-        test_labels.append(kmeans.predict(act_test[i][:, :96]))
+    test_samples = act_test.shape[0]
+    for i in range(test_samples):                       # each file
+        test_label = []
+        for j in range(act_test[i].shape[0]):           # each segment
+            test_label.append(kmeans.predict(act_test[i][j, :96].reshape(1, -1)))
+        test_label = np.array(test_label)
+        test_labels.append(test_label)
+    test_labels = np.array(test_labels)
 
     test_histogram = []
-    for i in range(act_test.shape[0]):
+    for i in range(test_samples):
         test_histogram.append(createTestHistogram(act_test[i], cluster_size, train_centers, test_labels[i]))
 
-    
+    rf = RF(max_depth=5, random_state=0).fit(train_histogram, [0,1,2,3,4,5,6,7,8,9,10,11,12,13])
+
+    accurate = 0
+    for i in range(test_samples):
+        label = rf.predict(test_histogram[i].reshape(1, -1))
+        label_ori = act_test[i][0, 96]
+        if int(label) == label_ori:
+            accurate = accurate + 1
+    print(test_samples, accurate)
 
 
 if __name__ == "__main__":
     act_name, act_data = readData('./HMP_Dataset')
 
-    execute(act_data, segment_size=32, cluster_size=40, percent=0.9, matrix_output=True)
+    execute(act_data, segment_size=32, cluster_size=10, percent=0.9, matrix_output=True)
 
 
 
