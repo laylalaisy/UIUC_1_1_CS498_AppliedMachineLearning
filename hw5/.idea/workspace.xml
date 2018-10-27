@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="80245e36-3683-46b5-8327-12a2b9e26f72" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/hw5.py" beforeDir="false" afterPath="$PROJECT_DIR$/hw5.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -12,35 +12,39 @@
   </component>
   <component name="CoverageDataManager">
     <SUITE FILE_PATH="coverage/hw5$Unnamed.coverage" NAME="Unnamed Coverage Results" MODIFIED="1539119509817" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
-    <SUITE FILE_PATH="coverage/hw5$hw5.coverage" NAME="hw5 Coverage Results" MODIFIED="1539272049089" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/hw5$hw5.coverage" NAME="hw5 Coverage Results" MODIFIED="1539624770916" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-981902994">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.2" value="1" />
+          <entry key="project.open.time.22" value="1" />
           <entry key="project.open.time.24" value="1" />
-          <entry key="project.opened" value="2" />
+          <entry key="project.open.time.3" value="1" />
+          <entry key="project.open.time.33" value="1" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="py" value="1" />
+          <entry key="py" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Python" value="1" />
+          <entry key="Python" value="3" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="py" value="7995" />
+          <entry key="py" value="8094" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Python" value="7995" />
+          <entry key="Python" value="8094" />
         </counts>
       </usages-collector>
     </session>
@@ -48,17 +52,12 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/hw5.py">
+        <entry file="file://$PROJECT_DIR$/hw5_final.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="459">
-              <caret line="154" column="26" selection-start-line="154" selection-start-column="26" selection-end-line="154" selection-end-column="26" />
+            <state relative-caret-position="244">
+              <caret line="187" column="63" lean-forward="true" selection-start-line="187" selection-start-column="63" selection-end-line="187" selection-end-column="63" />
               <folding>
                 <element signature="e#0#9#0" expanded="true" />
-                <marker date="1539272049074" expanded="true" signature="1413:1418" ph="..." />
-                <marker date="1539272049074" expanded="true" signature="1465:1470" ph="..." />
-                <marker date="1539272049074" expanded="true" signature="3471:4423" ph="..." />
-                <marker date="1539272049074" expanded="true" signature="4497:4502" ph="..." />
-                <marker date="1539272049074" expanded="true" signature="4497:5779" ph="..." />
               </folding>
             </state>
           </provider>
@@ -73,6 +72,11 @@
       </list>
     </option>
   </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>print</find>
+    </findStrings>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
@@ -80,6 +84,8 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/hw5.py" />
+        <option value="$PROJECT_DIR$/hw5(1).py" />
+        <option value="$PROJECT_DIR$/hw5_final.py" />
       </list>
     </option>
   </component>
@@ -117,7 +123,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/hw5_final.py" />
     <property name="nodejs_interpreter_path.stuck_in_default_project" value="undefined stuck path" />
     <property name="nodejs_npm_path_reset_for_default_project" value="true" />
   </component>
@@ -169,7 +175,7 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hw5.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/hw5_final.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -197,12 +203,12 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="64" y="-11" width="2497" height="1317" extended-state="6" />
+    <frame x="64" y="-11" width="1215" height="1295" extended-state="6" />
     <editor active="true" />
     <layout>
       <window_info id="Favorites" order="0" sideWeight="0.50058895" side_tool="true" weight="0.091874234" />
-      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49766356" visible="true" weight="0.0" />
-      <window_info id="Structure" order="2" sideWeight="0.50233644" side_tool="true" visible="true" weight="0.0" />
+      <window_info content_ui="combo" id="Project" order="1" sideWeight="0.49525452" visible="true" weight="0.011139674" />
+      <window_info id="Structure" order="2" sideWeight="0.5047455" side_tool="true" visible="true" weight="0.011139674" />
       <window_info anchor="bottom" id="Docker" order="0" show_stripe_button="false" />
       <window_info anchor="bottom" id="Terminal" order="1" weight="0.32938188" />
       <window_info anchor="bottom" id="Event Log" order="2" sideWeight="0.15938303" side_tool="true" weight="0.28041416" />
@@ -211,7 +217,7 @@
       <window_info anchor="bottom" id="Python Console" order="5" weight="0.32260796" />
       <window_info anchor="bottom" id="Message" order="6" />
       <window_info anchor="bottom" id="Find" order="7" />
-      <window_info active="true" anchor="bottom" id="Run" order="8" sideWeight="0.84061694" visible="true" weight="0.2751905" />
+      <window_info anchor="bottom" id="Run" order="8" sideWeight="0.84061694" weight="0.0" />
       <window_info anchor="bottom" id="Debug" order="9" sideWeight="0.49979582" weight="0.39881456" />
       <window_info anchor="bottom" id="Cvs" order="10" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="11" weight="0.4" />
@@ -233,15 +239,32 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/hw5.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
+        <state relative-caret-position="2250">
           <caret line="154" column="26" selection-start-line="154" selection-start-column="26" selection-end-line="154" selection-end-column="26" />
           <folding>
             <element signature="e#0#9#0" expanded="true" />
             <marker date="1539272049074" expanded="true" signature="1413:1418" ph="..." />
             <marker date="1539272049074" expanded="true" signature="1465:1470" ph="..." />
-            <marker date="1539272049074" expanded="true" signature="3471:4423" ph="..." />
-            <marker date="1539272049074" expanded="true" signature="4497:4502" ph="..." />
-            <marker date="1539272049074" expanded="true" signature="4497:5779" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hw5(1).py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="840">
+          <caret line="183" column="61" selection-start-line="183" selection-start-column="61" selection-end-line="183" selection-end-column="61" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/hw5_final.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="244">
+          <caret line="187" column="63" lean-forward="true" selection-start-line="187" selection-start-column="63" selection-end-line="187" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#9#0" expanded="true" />
           </folding>
         </state>
       </provider>
