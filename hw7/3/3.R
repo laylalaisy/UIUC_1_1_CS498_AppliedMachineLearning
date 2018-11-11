@@ -8,8 +8,8 @@ curpath <- getwd();
 # read in training data and label
 filename <- paste(curpath, "/blogData_train.csv", sep="");
 train <- as.matrix(read.csv(file=filename, header=FALSE, sep=","));
-train_x <- train[,1:280];
-train_y <- train[,281];
+train_x <- train[1:3000,1:280];
+train_y <- train[1:3000,281];
 
 # fit
 cvfit = cv.glmnet(train_x, train_y, family = "poisson", alpha=1);
