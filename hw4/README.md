@@ -3,8 +3,8 @@
 
 
 # HW4
-
 - PCA +PCoA 
+
 ## Pre-problem
 This component is not for grading, and you should not submit. But before you start the problem, you should check that you can do 6.3 and 7.3 in the 18-Sep version of the book. Go through each problem, and if you have trouble, ask in office hours. This is to help you get ready conceptually for the programming problem.
 
