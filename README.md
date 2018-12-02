@@ -7,3 +7,6 @@
 
 # HW2
 - support vector machine
+
+# HW3
+- PCA
