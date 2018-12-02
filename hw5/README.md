@@ -1,6 +1,5 @@
 # HW5 
 - k-means 
-- KNN
 
 You may use packages for k-means, for nearest neighbors, and for classification
 
