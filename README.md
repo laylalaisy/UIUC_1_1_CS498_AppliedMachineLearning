@@ -4,3 +4,6 @@
 - Naive Bayes Classifier
 - SVM
 - Decision Forest
+
+# HW2
+- support vector machine
