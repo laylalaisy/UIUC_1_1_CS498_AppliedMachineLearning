@@ -10,3 +10,10 @@
 
 # HW3
 - PCA
+
+# HW4
+- PCA +PCoA 
+
+# HW5 
+- k-means 
+
