@@ -29,3 +29,8 @@
 
 # HW8
 - Image Segmentaion using EM
+
+# HW9
+
+- Mean field inference
+- oltzmann machine model
