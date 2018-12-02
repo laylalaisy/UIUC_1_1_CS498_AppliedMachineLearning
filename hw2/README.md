@@ -12,6 +12,7 @@ Write a program to train a support vector machine on this data using stochastic 
 - Your estimate of the best value of the regularization constant, together with a brief description of why you believe that is a good value.
 = What was your choice for the learning rate and why did you choose it ?
 
+Submission:  
 - Page 1: screenshot of your leaderboard accuracy and mention your best test dataset accuracy obtained on kaggle.
 - Page 2: A plot of the accuracy every 30 steps, for each value of the regularization constant. You should plot the curves for all - regularization constants in the same plot using different colors with a label showing the corresponding values
 - Page 3: A plot of the magnitude of the coefficient vector every 30 steps, for each value of the regularization constant. You should plot the curves for all regularization constants in the same plot using different colors with a label showing the corresponding values.
