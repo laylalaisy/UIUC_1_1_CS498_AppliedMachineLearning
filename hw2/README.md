@@ -6,14 +6,14 @@ The UC Irvine machine learning data repository hosts a collection of data on adu
 
 Write a program to train a support vector machine on this data using stochastic gradient descent. You should not use a package to train the classifier (that's the point), but your own code. You should ignore the id number, and use the continuous variables as a feature vector. You should scale these variables so that each has unit variance, and you should subtract the mean so that each has zero mean. You should search for an appropriate value of the regularization constant, trying at least the values [1e-3, 1e-2, 1e-1, 1]. Use the validation set for this search. You should use at least 50 epochs of at least 300 steps each. In each epoch, you should separate out 50 training examples at random for evaluation (call this the set held out for the epoch). You should compute the accuracy of the current classifier on the set held out for the epoch every 30 steps. You should produce:
 
-A screenshot of your leaderboard accuracy.
-A plot of the accuracy every 30 steps, for each value of the regularization constant.
-A plot of the magnitude of the coefficient vector every 30 steps, for each value of the regularization constant.
-Your estimate of the best value of the regularization constant, together with a brief description of why you believe that is a good value.
-What was your choice for the learning rate and why did you choose it ?
+- A screenshot of your leaderboard accuracy.
+- A plot of the accuracy every 30 steps, for each value of the regularization constant.
+- A plot of the magnitude of the coefficient vector every 30 steps, for each value of the regularization constant.
+- Your estimate of the best value of the regularization constant, together with a brief description of why you believe that is a good value.
+= What was your choice for the learning rate and why did you choose it ?
 
-Page 1: screenshot of your leaderboard accuracy and mention your best test dataset accuracy obtained on kaggle.
-Page 2: A plot of the accuracy every 30 steps, for each value of the regularization constant. You should plot the curves for all regularization constants in the same plot using different colors with a label showing the corresponding values
-Page 3: A plot of the magnitude of the coefficient vector every 30 steps, for each value of the regularization constant. You should plot the curves for all regularization constants in the same plot using different colors with a label showing the corresponding values.
-Page 4: Your estimate of the best value of the regularization constant, together with a brief description of why you believe that is a good value. What was your choice for the learning rate and why did you choose it ?
-Page 5: 1 page screenshot of your code.
+- Page 1: screenshot of your leaderboard accuracy and mention your best test dataset accuracy obtained on kaggle.
+- Page 2: A plot of the accuracy every 30 steps, for each value of the regularization constant. You should plot the curves for all - regularization constants in the same plot using different colors with a label showing the corresponding values
+- Page 3: A plot of the magnitude of the coefficient vector every 30 steps, for each value of the regularization constant. You should plot the curves for all regularization constants in the same plot using different colors with a label showing the corresponding values.
+- Page 4: Your estimate of the best value of the regularization constant, together with a brief description of why you believe that is a good value. What was your choice for the learning rate and why did you choose it ?
+- Page 5: 1 page screenshot of your code.
