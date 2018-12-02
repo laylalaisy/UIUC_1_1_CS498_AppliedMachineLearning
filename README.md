@@ -17,3 +17,15 @@
 # HW5 
 - k-means 
 
+# HW6
+- linear regression
+- outlier
+- Box-Cox transformation
+
+# HW7
+- Linear Model: Poisson Model + Lasso
+- Cross-Validated
+- Regression
+
+# HW8
+- Image Segmentaion using EM
