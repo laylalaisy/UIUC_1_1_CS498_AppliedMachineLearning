@@ -103,6 +103,7 @@ def cnn_model_fn(features, labels, mode):
 def main(unused_argv):
   # Load training and eval data
   mnist = tf.contrib.learn.datasets.load_dataset("mnist")
+
   train_data = mnist.train.images  # Returns np.array
   train_labels = np.asarray(mnist.train.labels, dtype=np.int32)
   eval_data = mnist.test.images  # Returns np.array
@@ -118,26 +119,35 @@ def main(unused_argv):
   logging_hook = tf.train.LoggingTensorHook(
       tensors=tensors_to_log, every_n_iter=50)
 
-  # Train the model
-  train_input_fn = tf.estimator.inputs.numpy_input_fn(
-      x={"x": train_data},
-      y=train_labels,
-      batch_size=100,
-      num_epochs=None,
-      shuffle=True)
-  mnist_classifier.train(
-      input_fn=train_input_fn,
-      steps=20,
-      hooks=[logging_hook])
+  with tf.Session() as sess:
+    tf.summary.scalar('accuracy', accuracy)
+    merged = tf.summary.merge_all()
+    writer = tf.summary.FileWriter('/tmp/tensorflow/mnist/logs/mnist_with_summaries', sess.graph)
+    sess.run(tf.global_variables_initializer())
+    for i in range(2000):
+      # Train the model
+      train_input_fn = tf.estimator.inputs.numpy_input_fn(
+          x={"x": train_data},
+          y=train_labels,
+          batch_size=100,
+          num_epochs=None,
+          shuffle=True)
+      mnist_classifier.train(
+          input_fn=train_input_fn,
+          steps=20,
+          hooks=[logging_hook])
 
-  # Evaluate the model and print results
-  eval_input_fn = tf.estimator.inputs.numpy_input_fn(
-      x={"x": eval_data},
-      y=eval_labels,
-      num_epochs=1,
-      shuffle=False)
-  eval_results = mnist_classifier.evaluate(input_fn=eval_input_fn)
-  print(eval_results)
+      # Evaluate the model and print results
+      if i % 100 == 0:
+        eval_input_fn = tf.estimator.inputs.numpy_input_fn(
+          x={"x": eval_data},
+          y=eval_labels,
+          num_epochs=1,
+          shuffle=False)
+        eval_results = mnist_classifier.evaluate(input_fn=eval_input_fn)
+        summary = eval_results['accuracy']
+        writer.add_sumary(summary, i)
+      writer.close()
 
 
 if __name__ == "__main__":
