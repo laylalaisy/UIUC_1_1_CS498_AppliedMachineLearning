@@ -1,5 +1,6 @@
 # HW3  
 - PCA
+- http://luthuli.cs.uiuc.edu/~daf/courses/AML-18-Fall/AML-F18-HW-3.html
 
 ## Problem 1
 You may use any programming language that amuses you for this homework. You may use a PCA package if you so choose but remember you need to understand what comes out of the package to get the homework right!
