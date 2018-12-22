@@ -1,5 +1,6 @@
 # HW2
 - support vector machine
+- http://luthuli.cs.uiuc.edu/~daf/courses/AML-18-Fall/AML-F18-HW-2.html
 
 ##  Problem 1
 The UC Irvine machine learning data repository hosts a collection of data on adult income, donated by Ronny Kohavi and Barry Becker. You can find this data at https://archive.ics.uci.edu/ml/datasets/Adult For each record, there is a set of continuous attributes, and a class "less than 50K" or "greater than 50K". We will provide you with 43958 examples with known class labels, and 4884 examples without class labels, to be found at https://www.kaggle.com/t/f3528db914934de29c24d30cf792dea3. Split it randomly into 10% validation and 90% training data.
